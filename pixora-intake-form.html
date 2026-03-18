@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Profile Intake Form — Pixora Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --cream:#F5F0E8;
+  --sand:#E8DCC8;
+  --tan:#C9AD8A;
+  --amber:#B8895A;
+  --rust:#9B6240;
+  --bark:#6B4226;
+  --forest:#3D5A45;
+  --sage:#7A9E82;
+  --mist:#B8CCBA;
+  --charcoal:#2C2420;
+  --warm:#FAF7F2;
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Jost',sans-serif;
+  background:var(--cream);
+  color:var(--charcoal);
+  min-height:100vh;
+  font-size:16px;
+}
+
+/* ── HEADER ── */
+.site-header{
+  background:var(--charcoal);
+  padding:20px 32px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 2px 20px rgba(0,0,0,.3);
+}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:22px;
+  letter-spacing:6px;
+  color:var(--warm);
+  text-transform:uppercase;
+}
+.logo span{color:var(--amber);}
+.logo small{font-size:13px;letter-spacing:4px;color:var(--tan);margin-left:4px;}
+.header-tag{
+  font-size:10px;
+  font-weight:400;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--tan);
+}
+
+/* ── HERO BANNER ── */
+.form-hero{
+  background:var(--charcoal);
+  padding:56px 32px 48px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.form-hero::before{
+  content:'';
+  position:absolute;
+  width:600px;height:600px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(184,137,90,.1),transparent 65%);
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.form-hero-eyebrow{
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--amber);
+  display:block;
+  margin-bottom:16px;
+  position:relative;
+  z-index:1;
+}
+.form-hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:clamp(30px,6vw,52px);
+  color:var(--warm);
+  line-height:1.1;
+  margin-bottom:14px;
+  position:relative;
+  z-index:1;
+}
+.form-hero h1 em{color:var(--amber);font-style:italic;}
+.form-hero p{
+  font-size:15px;
+  font-weight:300;
+  color:var(--tan);
+  max-width:540px;
+  margin:0 auto;
+  line-height:1.8;
+  position:relative;
+  z-index:1;
+}
+
+/* ── PROGRESS BAR ── */
+.progress-wrap{
+  background:var(--sand);
+  padding:20px 24px;
+  position:sticky;
+  top:62px;
+  z-index:99;
+  border-bottom:1px solid rgba(184,137,90,.2);
+}
+.progress-inner{
+  max-width:800px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+.progress-bar-bg{
+  flex:1;
+  height:4px;
+  background:var(--tan);
+  border-radius:4px;
+  overflow:hidden;
+}
+.progress-bar-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--amber),var(--rust));
+  border-radius:4px;
+  transition:width .4s ease;
+  width:0%;
+}
+.progress-label{
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--bark);
+  white-space:nowrap;
+  min-width:80px;
+  text-align:right;
+}
+
+/* ── MAIN FORM CONTAINER ── */
+.form-container{
+  max-width:800px;
+  margin:0 auto;
+  padding:40px 20px 80px;
+}
+
+/* ── SECTION CARDS ── */
+.form-section{
+  background:#fff;
+  border-radius:8px;
+  margin-bottom:24px;
+  overflow:hidden;
+  box-shadow:0 2px 16px rgba(44,36,32,.07);
+  border:1px solid rgba(184,137,90,.1);
+}
+.section-head{
+  background:var(--charcoal);
+  padding:22px 28px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  cursor:pointer;
+  user-select:none;
+}
+.section-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;
+  font-weight:300;
+  color:rgba(184,137,90,.25);
+  line-height:1;
+  min-width:44px;
+}
+.section-head-text{flex:1;}
+.section-head-label{
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--amber);
+  display:block;
+  margin-bottom:3px;
+}
+.section-head-title{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:22px;
+  color:var(--warm);
+}
+.section-toggle{
+  font-size:22px;
+  color:var(--tan);
+  transition:transform .3s;
+  flex-shrink:0;
+}
+.form-section.open .section-toggle{transform:rotate(45deg);}
+.section-body{
+  display:none;
+  padding:28px;
+}
+.form-section.open .section-body{display:block;}
+
+/* ── FIELD GROUPS ── */
+.field-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-bottom:16px;
+}
+.field-row.single{grid-template-columns:1fr;}
+.field-row.triple{grid-template-columns:1fr 1fr 1fr;}
+
+.field-group{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  margin-bottom:4px;
+}
+.field-label{
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--bark);
+}
+.field-hint{
+  font-size:12px;
+  font-weight:300;
+  color:#aaa;
+  margin-top:-2px;
+  font-style:italic;
+}
+.field-input,
+.field-select,
+.field-textarea{
+  width:100%;
+  padding:14px 16px;
+  border:1.5px solid var(--sand);
+  border-radius:5px;
+  font-family:'Jost',sans-serif;
+  font-size:16px;
+  font-weight:300;
+  color:var(--charcoal);
+  background:var(--warm);
+  outline:none;
+  transition:border-color .2s,background .2s;
+  -webkit-appearance:none;
+  appearance:none;
+}
+.field-input:focus,
+.field-select:focus,
+.field-textarea:focus{
+  border-color:var(--amber);
+  background:#fff;
+}
+.field-input::placeholder,
+.field-textarea::placeholder{color:#ccc;}
+.field-textarea{
+  resize:vertical;
+  min-height:110px;
+  line-height:1.7;
+}
+.field-select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8895A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 16px center;
+  padding-right:40px;
+  cursor:pointer;
+}
+
+/* ── SECTION DIVIDER ── */
+.sub-divider{
+  height:1px;
+  background:linear-gradient(90deg,var(--tan),transparent);
+  margin:24px 0;
+}
+.sub-heading{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;
+  font-size:18px;
+  color:var(--charcoal);
+  margin-bottom:16px;
+}
+.sub-heading em{color:var(--rust);font-style:italic;}
+
+/* ── NOTE BOX ── */
+.note-box{
+  background:rgba(184,137,90,.06);
+  border:1px solid rgba(184,137,90,.2);
+  border-left:3px solid var(--amber);
+  border-radius:4px;
+  padding:14px 18px;
+  margin-bottom:20px;
+}
+.note-box p{
+  font-size:13px;
+  font-weight:300;
+  color:var(--bark);
+  line-height:1.7;
+}
+
+/* ── DECLARATION ── */
+.declaration-box{
+  background:var(--charcoal);
+  border-radius:8px;
+  padding:32px 28px;
+  margin-bottom:28px;
+}
+.declaration-box p{
+  font-size:14px;
+  font-weight:300;
+  color:var(--tan);
+  line-height:1.85;
+  margin-bottom:20px;
+}
+.checkbox-row{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  cursor:pointer;
+}
+.checkbox-row input[type="checkbox"]{
+  width:20px;
+  height:20px;
+  min-width:20px;
+  margin-top:2px;
+  accent-color:var(--amber);
+  cursor:pointer;
+}
+.checkbox-label{
+  font-size:14px;
+  font-weight:300;
+  color:var(--warm);
+  line-height:1.6;
+}
+
+/* ── SUBMIT SECTION ── */
+.submit-section{
+  text-align:center;
+  padding:8px 0 20px;
+}
+.submit-note{
+  font-size:13px;
+  font-weight:300;
+  color:#888;
+  margin-bottom:24px;
+  line-height:1.7;
+}
+.submit-note strong{color:var(--amber);}
+.btn-submit{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  background:var(--amber);
+  color:#fff;
+  border:none;
+  border-radius:5px;
+  padding:18px 48px;
+  font-family:'Jost',sans-serif;
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:background .2s,transform .15s,box-shadow .2s;
+  box-shadow:0 4px 20px rgba(184,137,90,.35);
+  width:100%;
+  max-width:380px;
+}
+.btn-submit:hover{background:var(--rust);transform:translateY(-2px);box-shadow:0 8px 28px rgba(184,137,90,.4);}
+.btn-submit:active{transform:translateY(0);}
+.btn-submit svg{width:20px;height:20px;flex-shrink:0;}
+.btn-submit:disabled{background:#ccc;cursor:not-allowed;transform:none;box-shadow:none;}
+
+/* ── MODAL ── */
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(44,36,32,.85);
+  z-index:500;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  backdrop-filter:blur(6px);
+}
+.modal-overlay.show{display:flex;}
+.modal{
+  background:#fff;
+  border-radius:10px;
+  padding:40px 32px;
+  max-width:480px;
+  width:100%;
+  text-align:center;
+  animation:popIn .3s ease;
+}
+@keyframes popIn{from{opacity:0;transform:scale(.9);}to{opacity:1;transform:scale(1);}}
+.modal-icon{font-size:48px;margin-bottom:16px;display:block;}
+.modal h3{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;
+  font-size:28px;
+  color:var(--charcoal);
+  margin-bottom:12px;
+}
+.modal p{
+  font-size:14px;
+  font-weight:300;
+  color:#666;
+  line-height:1.8;
+  margin-bottom:24px;
+}
+.modal-btns{display:flex;gap:12px;flex-direction:column;}
+.btn-wa{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  background:#25D366;
+  color:#fff;
+  border:none;
+  border-radius:5px;
+  padding:15px 24px;
+  font-family:'Jost',sans-serif;
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:background .2s;
+  text-decoration:none;
+}
+.btn-wa:hover{background:#1da851;}
+.btn-modal-close{
+  background:none;
+  border:1.5px solid var(--sand);
+  border-radius:5px;
+  padding:13px 24px;
+  font-family:'Jost',sans-serif;
+  font-size:12px;
+  font-weight:400;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#999;
+  cursor:pointer;
+  transition:border-color .2s,color .2s;
+}
+.btn-modal-close:hover{border-color:var(--amber);color:var(--amber);}
+
+/* ── FOOTER ── */
+.site-footer{
+  background:var(--charcoal);
+  padding:24px 32px;
+  text-align:center;
+}
+.site-footer p{
+  font-size:11px;
+  font-weight:300;
+  color:rgba(201,173,138,.45);
+  letter-spacing:1px;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  .site-header{padding:16px 20px;}
+  .header-tag{display:none;}
+  .form-hero{padding:40px 20px 36px;}
+  .progress-wrap{padding:14px 20px;top:58px;}
+  .form-container{padding:24px 16px 60px;}
+  .section-head{padding:18px 20px;}
+  .section-body{padding:20px 16px;}
+  .field-row,.field-row.triple{grid-template-columns:1fr;}
+  .field-input,.field-select,.field-textarea{font-size:16px;}
+  .declaration-box{padding:24px 20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="logo">PIX<span>O</span>RA <small>STUDIO</small></div>
+  <span class="header-tag">Client Intake</span>
+</header>
+
+<!-- HERO -->
+<div class="form-hero">
+  <span class="form-hero-eyebrow">Business Profile · Client Intake Form</span>
+  <h1>Tell us about your <em>business</em></h1>
+  <p>Complete every section as thoroughly as possible. The more detail you provide, the stronger your final business profile will be.</p>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+    <span class="progress-label" id="progressLabel">0% done</span>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="form-container">
+<form id="intakeForm" novalidate>
+
+  <!-- ── SECTION 1 ── -->
+  <div class="form-section open" data-section="1">
+    <div class="section-head" onclick="toggleSection(this)">
+      <span class="section-num">01</span>
+      <div class="section-head-text">
+        <span class="section-head-label">Section One</span>
+        <span class="section-head-title">Basic Business Information</span>
+      </div>
+      <span class="section-toggle">+</span>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label" for="legalName">Legal / Registered Business Name <span style="color:var(--rust)">*</span></label>
+          <input class="field-input" id="legalName" name="legalName" type="text" placeholder="As registered with CIPC or relevant authority" required>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="tradingName">Trading Name / DBA</label>
+          <span class="field-hint">If different from legal name</span>
+          <input class="field-input" id="tradingName" name="tradingName" type="text" placeholder="e.g. Acme Trading as 'Acme Solutions'">
+        </div>
+      </div>
+      <div class="field-row triple">
+        <div class="field-group">
+          <label class="field-label" for="entityType">Type of Business Entity <span style="color:var(--rust)">*</span></label>
+          <select class="field-select" id="entityType" name="entityType" required>
+            <option value="">Select entity type</option>
+            <option>Sole Proprietor</option>
+            <option>(Pty) Ltd</option>
+            <option>Close Corporation (CC)</option>
+            <option>Non-Profit Organisation (NPO)</option>
+            <option>Partnership</option>
+            <option>Trust</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="dateEstablished">Date Established <span style="color:var(--rust)">*</span></label>
+          <span class="field-hint">Month and year</span>
+          <input class="field-input" id="dateEstablished" name="dateEstablished" type="month" required>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="regNumber">Business Registration Number</label>
+          <input class="field-input" id="regNumber" name="regNumber" type="text" placeholder="e.g. 2020/123456/07">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label" for="vatNumber">VAT / Tax Number</label>
+          <span class="field-hint">If registered for VAT</span>
+          <input class="field-input" id="vatNumber" name="vatNumber" type="text" placeholder="e.g. 4710123456">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="industry">Industry / Sector <span style="color:var(--rust)">*</span></label>
+          <input class="field-input" id="industry" name="industry" type="text" placeholder="e.g. Professional Services, Retail, Construction" required>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label" for="subSector">Sub-Sector / Niche</label>
+          <span class="field-hint">Optional — be as specific as possible</span>
+          <input class="field-input" id="subSector" name="subSector" type="text" placeholder="e.g. B2B SaaS, Residential Plumbing, Organic Skincare">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="tagline">Tagline or Slogan</label>
+          <span class="field-hint">A short phrase that captures your brand</span>
+          <input class="field-input" id="tagline" name="tagline" type="text" placeholder="e.g. 'Building trust, one project at a time'">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 ── -->
+  <div class="form-section" data-section="2">
+    <div class="section-head" onclick="toggleSection(this)">
+      <span class="section-num">02</span>
+      <div class="section-head-text">
+        <span class="section-head-label">Section Two</span>
+        <span class="section-head-title">Contact & Location Information</span>
+      </div>
+      <span class="section-toggle">+</span>
+    </div>
+    <div class="section-body">
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="physicalAddress">Physical / Street Address (Head Office) <span style="color:var(--rust)">*</span></label>
+          <textarea class="field-textarea" id="physicalAddress" name="physicalAddress" rows="3" placeholder="Street number, street name, suburb, city, postal code" required style="min-height:80px;"></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="postalAddress">Postal Address</label>
+          <span class="field-hint">Complete only if different from above</span>
+          <textarea class="field-textarea" id="postalAddress" name="postalAddress" rows="2" placeholder="P.O. Box or postal address" style="min-height:70px;"></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="branchAddresses">Branch / Additional Location Addresses</label>
+          <span class="field-hint">List each address on a new line</span>
+          <textarea class="field-textarea" id="branchAddresses" name="branchAddresses" rows="3" placeholder="Branch 1: &#10;Branch 2:" style="min-height:80px;"></textarea>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label" for="primaryPhone">Primary Phone Number <span style="color:var(--rust)">*</span></label>
+          <input class="field-input" id="primaryPhone" name="primaryPhone" type="tel" placeholder="e.g. +27 11 123 4567" required>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="whatsapp">WhatsApp / Secondary Number</label>
+          <input class="field-input" id="whatsapp" name="whatsapp" type="tel" placeholder="e.g. +27 82 123 4567">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label" for="generalEmail">General Email Address <span style="color:var(--rust)">*</span></label>
+          <input class="field-input" id="generalEmail" name="generalEmail" type="email" placeholder="e.g. info@yourbusiness.co.za" required>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="website">Website URL</label>
+          <input class="field-input" id="website" name="website" type="url" placeholder="e.g. https://www.yourbusiness.co.za">
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="additionalEmails">Additional Email Addresses</label>
+          <span class="field-hint">e.g. sales@, support@, info@</span>
+          <input class="field-input" id="additionalEmails" name="additionalEmails" type="text" placeholder="sales@..., support@...">
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="socialMedia">Social Media Handles</label>
+          <span class="field-hint">LinkedIn, Facebook, Instagram, X/Twitter, TikTok — include full URLs</span>
+          <textarea class="field-textarea" id="socialMedia" name="socialMedia" rows="4" placeholder="LinkedIn: https://linkedin.com/company/...&#10;Facebook: https://facebook.com/...&#10;Instagram: https://instagram.com/...&#10;X/Twitter: https://x.com/..." style="min-height:100px;"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 3 ── -->
+  <div class="form-section" data-section="3">
+    <div class="section-head" onclick="toggleSection(this)">
+      <span class="section-num">03</span>
+      <div class="section-head-text">
+        <span class="section-head-label">Section Three</span>
+        <span class="section-head-title">About the Business</span>
+      </div>
+      <span class="section-toggle">+</span>
+    </div>
+    <div class="section-body">
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="mission">Mission Statement <span style="color:var(--rust)">*</span></label>
+          <span class="field-hint">Why does your business exist? What problem do you solve?</span>
+          <textarea class="field-textarea" id="mission" name="mission" placeholder="e.g. To empower small businesses in South Africa with affordable, professional digital tools that help them compete and grow..." required></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="vision">Vision Statement <span style="color:var(--rust)">*</span></label>
+          <span class="field-hint">Where is your business headed in the next 5–10 years?</span>
+          <textarea class="field-textarea" id="vision" name="vision" placeholder="e.g. To become the leading digital agency for micro and small businesses across sub-Saharan Africa..." required></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="coreValues">Core Values <span style="color:var(--rust)">*</span></label>
+          <span class="field-hint">List the principles that guide how you operate (e.g. Integrity, Innovation, Excellence)</span>
+          <textarea class="field-textarea" id="coreValues" name="coreValues" placeholder="1. Integrity — we do what we say we will do&#10;2. Innovation — we stay ahead of industry trends&#10;3. ..." required></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="companyOverview">Company Overview / History</label>
+          <span class="field-hint">Background story, founding journey, and key milestones</span>
+          <textarea class="field-textarea" id="companyOverview" name="companyOverview" rows="5" placeholder="Founded in [year] by [founder], the business started as... Key milestones include..." style="min-height:130px;"></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="businessModel">Business Model</label>
+          <span class="field-hint">How does the business generate revenue?</span>
+          <textarea class="field-textarea" id="businessModel" name="businessModel" placeholder="e.g. Project-based fees, monthly retainers, product sales, subscription model..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4 ── -->
+  <div class="form-section" data-section="4">
+    <div class="section-head" onclick="toggleSection(this)">
+      <span class="section-num">04</span>
+      <div class="section-head-text">
+        <span class="section-head-label">Section Four</span>
+        <span class="section-head-title">Products & Services</span>
+      </div>
+      <span class="section-toggle">+</span>
+    </div>
+    <div class="section-body">
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="servicesList">List of Products / Services Offered <span style="color:var(--rust)">*</span></label>
+          <span class="field-hint">List each product or service, one per line</span>
+          <textarea class="field-textarea" id="servicesList" name="servicesList" rows="6" placeholder="1. Web Design & Development&#10;2. SEO Optimisation&#10;3. Paid Advertising (Meta & Google)&#10;4. Email Marketing&#10;5. Logo & Brand Identity" style="min-height:140px;" required></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="serviceDescriptions">Descriptions</label>
+          <span class="field-hint">Brief description of each product/service listed above</span>
+          <textarea class="field-textarea" id="serviceDescriptions" name="serviceDescriptions" rows="6" placeholder="1. Web Design: Custom, mobile-first websites built to convert visitors into clients...&#10;2. SEO: On-page optimisation, keyword research, Google Search Console setup..." style="min-height:140px;"></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="targetMarket">Target Market / Customer Base <span style="color:var(--rust)">*</span></label>
+          <span class="field-hint">Who do you primarily serve? Demographics, industries, locations</span>
+          <textarea class="field-textarea" id="targetMarket" name="targetMarket" placeholder="e.g. Small business owners and entrepreneurs aged 25–50 in South Africa, particularly in Gauteng and Western Cape, across industries such as..." required></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="usp">Unique Selling Proposition (USP) <span style="color:var(--rust)">*</span></label>
+          <span class="field-hint">What sets you apart from competitors?</span>
+          <textarea class="field-textarea" id="usp" name="usp" placeholder="e.g. Unlike large agencies, we offer boutique-level service with direct access to your project consultant, fast turnaround times, and transparent pricing with no hidden fees..." required></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="pricing">Pricing Structure</label>
+          <span class="field-hint">Optional — include if you wish to show pricing in your profile</span>
+          <textarea class="field-textarea" id="pricing" name="pricing" placeholder="e.g. Starter Package: R800 | Growth Package: R2,500 | Premium Package: R3,600&#10;Or: Custom quotes provided on request"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 5 ── -->
+  <div class="form-section" data-section="5">
+    <div class="section-head" onclick="toggleSection(this)">
+      <span class="section-num">05</span>
+      <div class="section-head-text">
+        <span class="section-head-label">Section Five</span>
+        <span class="section-head-title">Ownership & Leadership</span>
+      </div>
+      <span class="section-toggle">+</span>
+    </div>
+    <div class="section-body">
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="owners">Owner(s) / Founder(s) — Name(s) and Role(s) <span style="color:var(--rust)">*</span></label>
+          <textarea class="field-textarea" id="owners" name="owners" placeholder="e.g. Jane Smith — Founder & CEO&#10;John Dlamini — Co-Founder & CTO" required style="min-height:80px;"></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="boardOfDirectors">Board of Directors</label>
+          <span class="field-hint">Names and titles — leave blank if not applicable</span>
+          <textarea class="field-textarea" id="boardOfDirectors" name="boardOfDirectors" placeholder="e.g. Name | Title&#10;..." style="min-height:80px;"></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="managementTeam">Executive / Management Team</label>
+          <span class="field-hint">Name | Title | Brief bio (2–3 sentences each)</span>
+          <textarea class="field-textarea" id="managementTeam" name="managementTeam" rows="5" placeholder="e.g. Thabo Mokoena | Head of Operations | Thabo has 10 years of experience in operations management..." style="min-height:120px;"></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="orgStructure">Organisational Structure</label>
+          <span class="field-hint">Describe or list departments and reporting lines</span>
+          <textarea class="field-textarea" id="orgStructure" name="orgStructure" placeholder="e.g. CEO → Operations Manager → Project Coordinators&#10;CEO → Head of Sales → Account Managers"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 6 ── -->
+  <div class="form-section" data-section="6">
+    <div class="section-head" onclick="toggleSection(this)">
+      <span class="section-num">06</span>
+      <div class="section-head-text">
+        <span class="section-head-label">Section Six</span>
+        <span class="section-head-title">Operational Information</span>
+      </div>
+      <span class="section-toggle">+</span>
+    </div>
+    <div class="section-body">
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label" for="numEmployees">Total Number of Employees</label>
+          <input class="field-input" id="numEmployees" name="numEmployees" type="number" min="1" placeholder="e.g. 12">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="operatingHours">Operating Hours <span style="color:var(--rust)">*</span></label>
+          <span class="field-hint">Days &amp; times</span>
+          <input class="field-input" id="operatingHours" name="operatingHours" type="text" placeholder="e.g. Mon–Fri: 08:00–17:00, Sat: 09:00–13:00" required>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="areasServed">Geographic Areas Served <span style="color:var(--rust)">*</span></label>
+          <span class="field-hint">City, province, national, or international — be specific</span>
+          <textarea class="field-textarea" id="areasServed" name="areasServed" placeholder="e.g. Nationally across South Africa, with a focus on Gauteng and Western Cape. International clients served remotely." required style="min-height:80px;"></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="suppliers">Key Suppliers / Strategic Partners</label>
+          <span class="field-hint">Optional</span>
+          <textarea class="field-textarea" id="suppliers" name="suppliers" placeholder="e.g. Company Name — role or nature of partnership&#10;..." style="min-height:80px;"></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="technology">Key Technology or Systems Used</label>
+          <span class="field-hint">Relevant for tech-driven or specialised industries</span>
+          <input class="field-input" id="technology" name="technology" type="text" placeholder="e.g. Salesforce CRM, QuickBooks, Shopify, Microsoft 365">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 7 ── -->
+  <div class="form-section" data-section="7">
+    <div class="section-head" onclick="toggleSection(this)">
+      <span class="section-num">07</span>
+      <div class="section-head-text">
+        <span class="section-head-label">Section Seven</span>
+        <span class="section-head-title">Legal & Compliance</span>
+      </div>
+      <span class="section-toggle">+</span>
+    </div>
+    <div class="section-body">
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="licences">Business Licences & Permits</label>
+          <span class="field-hint">Name of licence, issuing authority, expiry date</span>
+          <textarea class="field-textarea" id="licences" name="licences" placeholder="e.g. Business Licence | City of Johannesburg | Expires Dec 2026&#10;..." style="min-height:80px;"></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="certifications">Certifications & Accreditations</label>
+          <span class="field-hint">e.g. ISO 9001, SABS, professional body memberships</span>
+          <textarea class="field-textarea" id="certifications" name="certifications" placeholder="e.g. ISO 9001:2015 certified | Google Partner | Meta Business Partner&#10;..." style="min-height:80px;"></textarea>
+        </div>
+      </div>
+      <div class="field-row triple">
+        <div class="field-group">
+          <label class="field-label" for="bbbeeLevel">BBBEE Level</label>
+          <select class="field-select" id="bbbeeLevel" name="bbbeeLevel">
+            <option value="">Select level</option>
+            <option>Level 1</option>
+            <option>Level 2</option>
+            <option>Level 3</option>
+            <option>Level 4</option>
+            <option>Level 5</option>
+            <option>Level 6</option>
+            <option>Level 7</option>
+            <option>Level 8</option>
+            <option>Exempt Micro Enterprise (EME)</option>
+            <option>Qualifying Small Enterprise (QSE)</option>
+            <option>Non-compliant</option>
+            <option>Not applicable</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="bbbeeExpiry">BBBEE Certificate Expiry</label>
+          <input class="field-input" id="bbbeeExpiry" name="bbbeeExpiry" type="month">
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="insurance">Insurance Coverage</label>
+          <span class="field-hint">Types of cover held</span>
+          <input class="field-input" id="insurance" name="insurance" type="text" placeholder="e.g. Public Liability, PI Insurance">
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="policies">Relevant Company Policies</label>
+          <span class="field-hint">e.g. data protection, employment equity, POPIA compliance</span>
+          <textarea class="field-textarea" id="policies" name="policies" placeholder="e.g. POPIA-compliant data protection policy, Employment Equity Plan in place..." style="min-height:80px;"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 8 ── -->
+  <div class="form-section" data-section="8">
+    <div class="section-head" onclick="toggleSection(this)">
+      <span class="section-num">08</span>
+      <div class="section-head-text">
+        <span class="section-head-label">Section Eight</span>
+        <span class="section-head-title">Track Record & Credibility</span>
+      </div>
+      <span class="section-toggle">+</span>
+    </div>
+    <div class="section-body">
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="portfolio">Portfolio / Notable Past Projects</label>
+          <span class="field-hint">Project name | Client | Brief description | Year</span>
+          <textarea class="field-textarea" id="portfolio" name="portfolio" rows="5" placeholder="e.g. Brand Refresh | Mokoena Auto Repairs | Full rebrand including logo, website and social presence | 2024&#10;..." style="min-height:120px;"></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="keyClients">Key Clients / Customers</label>
+          <span class="field-hint">List names you are authorised to display publicly</span>
+          <textarea class="field-textarea" id="keyClients" name="keyClients" placeholder="e.g. Ndlovu Consulting, Vilakazi Personal Brands, ..." style="min-height:80px;"></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="testimonials">Testimonials & Reviews</label>
+          <span class="field-hint">Quote | Client name &amp; company | Date</span>
+          <textarea class="field-textarea" id="testimonials" name="testimonials" rows="5" placeholder="e.g. &quot;Pixora Studio completely transformed our online presence.&quot; | Thabo Mokoena, Mokoena Auto Repairs | March 2025&#10;..." style="min-height:120px;"></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="awards">Awards & Recognition</label>
+          <span class="field-hint">Award name | Issuing body | Year</span>
+          <textarea class="field-textarea" id="awards" name="awards" placeholder="e.g. Best Digital Agency — SME Awards South Africa | 2024&#10;..." style="min-height:80px;"></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="caseStudies">Case Studies</label>
+          <span class="field-hint">Optional — brief success story per project</span>
+          <textarea class="field-textarea" id="caseStudies" name="caseStudies" rows="4" placeholder="e.g. Client X came to us with no online presence. Within 60 days of launching their new website and running targeted Google Ads, they generated R45,000 in new enquiries..." style="min-height:110px;"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 9 ── -->
+  <div class="form-section" data-section="9">
+    <div class="section-head" onclick="toggleSection(this)">
+      <span class="section-num">09</span>
+      <div class="section-head-text">
+        <span class="section-head-label">Section Nine · Optional</span>
+        <span class="section-head-title">Additional Information</span>
+      </div>
+      <span class="section-toggle">+</span>
+    </div>
+    <div class="section-body">
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="csi">CSI / Social Responsibility Initiatives</label>
+          <span class="field-hint">Community programmes, charity partnerships, volunteering</span>
+          <textarea class="field-textarea" id="csi" name="csi" placeholder="e.g. Annual bursary for digital marketing students at local colleges..."></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="sustainability">Environmental / Sustainability Practices</label>
+          <span class="field-hint">Green credentials, carbon commitments, eco-friendly policies</span>
+          <textarea class="field-textarea" id="sustainability" name="sustainability" placeholder="e.g. Paperless office policy, renewable energy supplier, carbon-neutral operations..."></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="futurePlans">Future Plans / Expansion Goals</label>
+          <span class="field-hint">Where is the business headed? New markets, products, services?</span>
+          <textarea class="field-textarea" id="futurePlans" name="futurePlans" placeholder="e.g. Launching a self-service digital marketing platform in Q3 2025, expanding into Namibia and Botswana by 2026..."></textarea>
+        </div>
+      </div>
+      <div class="field-row single">
+        <div class="field-group">
+          <label class="field-label" for="mediaFeatures">Media Features & Press Mentions</label>
+          <span class="field-hint">Publication name, article title, date</span>
+          <textarea class="field-textarea" id="mediaFeatures" name="mediaFeatures" placeholder="e.g. Business Insider South Africa — 'Top 10 Digital Agencies to Watch' — June 2024&#10;..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DECLARATION ── -->
+  <div class="declaration-box">
+    <p>By submitting this form, I confirm that all information provided is accurate and up to date to the best of my knowledge, and that I am authorised to submit it on behalf of the business named above. All information will be treated with strict confidentiality by Pixora Studio.</p>
+    <div class="field-row" style="margin-bottom:16px;">
+      <div class="field-group">
+        <label class="field-label" for="declarantName" style="color:var(--tan);">Full Name & Designation <span style="color:var(--rust)">*</span></label>
+        <input class="field-input" id="declarantName" name="declarantName" type="text" placeholder="e.g. Jane Smith — CEO" required style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.12);color:var(--warm);">
+      </div>
+      <div class="field-group">
+        <label class="field-label" for="declarantDate" style="color:var(--tan);">Date <span style="color:var(--rust)">*</span></label>
+        <input class="field-input" id="declarantDate" name="declarantDate" type="date" required style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.12);color:var(--warm);">
+      </div>
+    </div>
+    <div class="field-row single" style="margin-bottom:0;">
+      <div class="field-group">
+        <label class="field-label" for="declarantContact" style="color:var(--tan);">Contact Number <span style="color:var(--rust)">*</span></label>
+        <input class="field-input" id="declarantContact" name="declarantContact" type="tel" placeholder="e.g. +27 82 123 4567" required style="background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.12);color:var(--warm);">
+      </div>
+    </div>
+    <div style="margin-top:20px;">
+      <label class="checkbox-row">
+        <input type="checkbox" id="agreeDeclaration" required>
+        <span class="checkbox-label">I confirm the above declaration and consent to Pixora Studio processing this information to build my business profile.</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- ── SUBMIT ── -->
+  <div class="submit-section">
+    <p class="submit-note">Once you click Submit, your responses will be compiled into a <strong>PDF document</strong> which will open a WhatsApp message to Pixora Studio with the file ready to send.</p>
+    <button type="submit" class="btn-submit" id="submitBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      Submit via WhatsApp
+    </button>
+  </div>
+
+</form>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal">
+    <span class="modal-icon">✅</span>
+    <h3>PDF Ready to Send</h3>
+    <p>Your business profile has been compiled into a PDF. Click the button below to open WhatsApp and send it directly to Pixora Studio.</p>
+    <div class="modal-btns">
+      <a href="#" class="btn-wa" id="waLink" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Open WhatsApp to Send PDF
+      </a>
+      <button class="btn-modal-close" onclick="document.getElementById('successModal').classList.remove('show')">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>© 2025 Pixora Studio · All information treated with strict confidentiality · hello@pixorastudio.co.za</p>
+</footer>
+
+<script>
+// ── Section toggle ──
+function toggleSection(head) {
+  const section = head.closest('.form-section');
+  section.classList.toggle('open');
+}
+
+// ── Progress tracking ──
+function updateProgress() {
+  const required = document.querySelectorAll('[required]');
+  let filled = 0;
+  required.forEach(el => {
+    if(el.type === 'checkbox') { if(el.checked) filled++; }
+    else if(el.value.trim()) filled++;
+  });
+  const pct = Math.round((filled / required.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = pct + '% done';
+}
+document.querySelectorAll('input,textarea,select').forEach(el => {
+  el.addEventListener('input', updateProgress);
+  el.addEventListener('change', updateProgress);
+});
+
+// ── Set today's date ──
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('declarantDate').value = today;
+updateProgress();
+
+// ── PDF Generation ──
+function generatePDF(data) {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+  const pageW = 210;
+  const pageH = 297;
+  const margin = 18;
+  const contentW = pageW - margin * 2;
+  let y = 0;
+
+  const colors = {
+    charcoal: [44, 36, 32],
+    amber: [184, 137, 90],
+    rust: [155, 98, 64],
+    cream: [245, 240, 232],
+    sand: [232, 220, 200],
+    tan: [201, 173, 138],
+    bark: [107, 66, 38],
+    white: [255, 255, 255],
+    lightgrey: [240, 236, 230],
+  };
+
+  function checkPage(needed) {
+    if (y + needed > pageH - 16) {
+      doc.addPage();
+      y = 20;
+    }
+  }
+
+  function addHeader() {
+    // Dark header bar
+    doc.setFillColor(...colors.charcoal);
+    doc.rect(0, 0, pageW, 22, 'F');
+    // Amber accent line
+    doc.setFillColor(...colors.amber);
+    doc.rect(0, 22, pageW, 1.2, 'F');
+    // Logo text
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(14);
+    doc.setTextColor(...colors.white);
+    doc.text('PIXORA', margin, 14);
+    doc.setTextColor(...colors.amber);
+    doc.text('O', margin + 20, 14);
+    doc.setTextColor(...colors.white);
+    doc.text('RA  STUDIO', margin + 24.5, 14);
+    // Right tag
+    doc.setFontSize(7);
+    doc.setTextColor(...colors.tan);
+    doc.text('BUSINESS PROFILE · CLIENT INTAKE', pageW - margin, 14, { align: 'right' });
+    y = 30;
+  }
+
+  function addFooter(pageNum, total) {
+    doc.setFillColor(...colors.charcoal);
+    doc.rect(0, pageH - 12, pageW, 12, 'F');
+    doc.setFontSize(7);
+    doc.setTextColor(...colors.tan);
+    doc.text('Pixora Studio · Confidential · hello@pixorastudio.co.za', margin, pageH - 4.5);
+    doc.text(`Page ${pageNum}`, pageW - margin, pageH - 4.5, { align: 'right' });
+  }
+
+  function sectionTitle(num, title) {
+    checkPage(22);
+    // Section background
+    doc.setFillColor(...colors.charcoal);
+    doc.rect(margin, y, contentW, 12, 'F');
+    doc.setFillColor(...colors.amber);
+    doc.rect(margin, y, 3, 12, 'F');
+    doc.setFontSize(7);
+    doc.setTextColor(...colors.amber);
+    doc.text(`SECTION ${num}`, margin + 7, y + 4.5);
+    doc.setFontSize(11);
+    doc.setTextColor(...colors.white);
+    doc.setFont('helvetica', 'bold');
+    doc.text(title, margin + 7, y + 9.5);
+    doc.setFont('helvetica', 'normal');
+    y += 16;
+  }
+
+  function fieldBlock(label, value) {
+    if (!value || !value.trim()) return;
+    const lines = doc.splitTextToSize(value, contentW - 6);
+    const blockH = 7 + lines.length * 5.2 + 5;
+    checkPage(blockH);
+    // Label
+    doc.setFillColor(...colors.sand);
+    doc.rect(margin, y, contentW, 6, 'F');
+    doc.setFontSize(7.5);
+    doc.setTextColor(...colors.bark);
+    doc.setFont('helvetica', 'bold');
+    doc.text(label.toUpperCase(), margin + 3, y + 4.2);
+    doc.setFont('helvetica', 'normal');
+    y += 7;
+    // Value
+    doc.setFillColor(...colors.white);
+    doc.rect(margin, y, contentW, lines.length * 5.2 + 4, 'F');
+    doc.setDrawColor(...colors.sand);
+    doc.setLineWidth(0.3);
+    doc.rect(margin, y - 7, contentW, lines.length * 5.2 + 11, 'S');
+    doc.setFontSize(9.5);
+    doc.setTextColor(60, 50, 44);
+    doc.text(lines, margin + 3, y + 4.5, { lineHeightFactor: 1.45 });
+    y += lines.length * 5.2 + 8;
+  }
+
+  // ── Build pages ──
+  addHeader();
+
+  // Cover info box
+  doc.setFillColor(...colors.cream);
+  doc.rect(margin, y, contentW, 28, 'F');
+  doc.setFillColor(...colors.amber);
+  doc.rect(margin, y, contentW, 1, 'F');
+  doc.setFontSize(16);
+  doc.setTextColor(...colors.charcoal);
+  doc.setFont('helvetica', 'bold');
+  doc.text(data.legalName || data.tradingName || 'Business Profile', margin + 6, y + 10);
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(9);
+  doc.setTextColor(...colors.rust);
+  doc.text(data.industry || '', margin + 6, y + 16);
+  doc.setFontSize(8);
+  doc.setTextColor(...colors.tan);
+  doc.text(`Submitted: ${data.declarantDate || today}  ·  Prepared by: ${data.declarantName || ''}`, margin + 6, y + 23);
+  y += 34;
+
+  // SECTION 1
+  sectionTitle('01', 'Basic Business Information');
+  fieldBlock('Legal / Registered Business Name', data.legalName);
+  fieldBlock('Trading Name / DBA', data.tradingName);
+  fieldBlock('Type of Business Entity', data.entityType);
+  fieldBlock('Date Established', data.dateEstablished);
+  fieldBlock('Business Registration Number', data.regNumber);
+  fieldBlock('VAT / Tax Number', data.vatNumber);
+  fieldBlock('Industry / Sector', data.industry);
+  fieldBlock('Sub-Sector / Niche', data.subSector);
+  fieldBlock('Tagline or Slogan', data.tagline);
+  y += 4;
+
+  // SECTION 2
+  sectionTitle('02', 'Contact & Location Information');
+  fieldBlock('Physical / Street Address', data.physicalAddress);
+  fieldBlock('Postal Address', data.postalAddress);
+  fieldBlock('Branch / Additional Locations', data.branchAddresses);
+  fieldBlock('Primary Phone Number', data.primaryPhone);
+  fieldBlock('WhatsApp / Secondary Number', data.whatsapp);
+  fieldBlock('General Email Address', data.generalEmail);
+  fieldBlock('Website URL', data.website);
+  fieldBlock('Additional Email Addresses', data.additionalEmails);
+  fieldBlock('Social Media Handles', data.socialMedia);
+  y += 4;
+
+  // SECTION 3
+  sectionTitle('03', 'About the Business');
+  fieldBlock('Mission Statement', data.mission);
+  fieldBlock('Vision Statement', data.vision);
+  fieldBlock('Core Values', data.coreValues);
+  fieldBlock('Company Overview / History', data.companyOverview);
+  fieldBlock('Business Model', data.businessModel);
+  y += 4;
+
+  // SECTION 4
+  sectionTitle('04', 'Products & Services');
+  fieldBlock('List of Products / Services', data.servicesList);
+  fieldBlock('Service Descriptions', data.serviceDescriptions);
+  fieldBlock('Target Market / Customer Base', data.targetMarket);
+  fieldBlock('Unique Selling Proposition (USP)', data.usp);
+  fieldBlock('Pricing Structure', data.pricing);
+  y += 4;
+
+  // SECTION 5
+  sectionTitle('05', 'Ownership & Leadership');
+  fieldBlock('Owner(s) / Founder(s)', data.owners);
+  fieldBlock('Board of Directors', data.boardOfDirectors);
+  fieldBlock('Executive / Management Team', data.managementTeam);
+  fieldBlock('Organisational Structure', data.orgStructure);
+  y += 4;
+
+  // SECTION 6
+  sectionTitle('06', 'Operational Information');
+  fieldBlock('Total Number of Employees', data.numEmployees);
+  fieldBlock('Operating Hours', data.operatingHours);
+  fieldBlock('Geographic Areas Served', data.areasServed);
+  fieldBlock('Key Suppliers / Strategic Partners', data.suppliers);
+  fieldBlock('Key Technology or Systems Used', data.technology);
+  y += 4;
+
+  // SECTION 7
+  sectionTitle('07', 'Legal & Compliance');
+  fieldBlock('Business Licences & Permits', data.licences);
+  fieldBlock('Certifications & Accreditations', data.certifications);
+  fieldBlock('BBBEE Level', data.bbbeeLevel);
+  fieldBlock('BBBEE Certificate Expiry', data.bbbeeExpiry);
+  fieldBlock('Insurance Coverage', data.insurance);
+  fieldBlock('Relevant Company Policies', data.policies);
+  y += 4;
+
+  // SECTION 8
+  sectionTitle('08', 'Track Record & Credibility');
+  fieldBlock('Portfolio / Notable Past Projects', data.portfolio);
+  fieldBlock('Key Clients / Customers', data.keyClients);
+  fieldBlock('Testimonials & Reviews', data.testimonials);
+  fieldBlock('Awards & Recognition', data.awards);
+  fieldBlock('Case Studies', data.caseStudies);
+  y += 4;
+
+  // SECTION 9
+  sectionTitle('09', 'Additional Information');
+  fieldBlock('CSI / Social Responsibility', data.csi);
+  fieldBlock('Environmental / Sustainability', data.sustainability);
+  fieldBlock('Future Plans / Expansion Goals', data.futurePlans);
+  fieldBlock('Media Features & Press Mentions', data.mediaFeatures);
+  y += 4;
+
+  // DECLARATION
+  sectionTitle('DEC', 'Declaration & Submission');
+  fieldBlock('Full Name & Designation', data.declarantName);
+  fieldBlock('Date', data.declarantDate);
+  fieldBlock('Contact Number', data.declarantContact);
+
+  // Add footers to all pages
+  const totalPages = doc.getNumberOfPages();
+  for (let i = 1; i <= totalPages; i++) {
+    doc.setPage(i);
+    addFooter(i, totalPages);
+  }
+
+  return doc;
+}
+
+// ── Form submission ──
+document.getElementById('intakeForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  // Validate required fields
+  const requiredFields = this.querySelectorAll('[required]');
+  let firstInvalid = null;
+  let allValid = true;
+  requiredFields.forEach(field => {
+    field.style.borderColor = '';
+    if(field.type === 'checkbox') {
+      if(!field.checked) { allValid = false; if(!firstInvalid) firstInvalid = field; }
+    } else if(!field.value.trim()) {
+      field.style.borderColor = '#e05555';
+      allValid = false;
+      if(!firstInvalid) firstInvalid = field;
+      // Open the containing section
+      const section = field.closest('.form-section');
+      if(section) section.classList.add('open');
+    }
+  });
+
+  if(!allValid) {
+    if(firstInvalid) firstInvalid.scrollIntoView({ behavior:'smooth', block:'center' });
+    return;
+  }
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Generating PDF...';
+
+  // Collect form data
+  const fd = new FormData(this);
+  const data = {};
+  fd.forEach((v, k) => data[k] = v);
+
+  // Generate PDF
+  setTimeout(() => {
+    try {
+      const doc = generatePDF(data);
+      const pdfBlob = doc.output('blob');
+
+      // Create download link and trigger
+      const blobUrl = URL.createObjectURL(pdfBlob);
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = `Pixora-Business-Profile-${(data.legalName || data.tradingName || 'Form').replace(/\s+/g,'-')}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      // Build WhatsApp message
+      const businessName = data.legalName || data.tradingName || 'a client';
+      const msg = encodeURIComponent(
+        `Hi Pixora Studio 👋\n\nI've completed the Business Profile Intake Form for *${businessName}*.\n\nPlease find the PDF attached above.\n\nSubmitted by: ${data.declarantName || ''}\nDate: ${data.declarantDate || ''}\nContact: ${data.declarantContact || ''}`
+      );
+      document.getElementById('waLink').href = `https://wa.me/27630007335?text=${msg}`;
+
+      // Show modal
+      document.getElementById('successModal').classList.add('show');
+
+      btn.disabled = false;
+      btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg> Submit via WhatsApp`;
+    } catch(err) {
+      console.error(err);
+      btn.disabled = false;
+      btn.textContent = 'Error — Try Again';
+    }
+  }, 100);
+});
+</script>
+</body>
+</html>

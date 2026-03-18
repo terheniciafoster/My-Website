@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pixora Studio — Premium Digital Services | Web Design, SEO, Paid Ads & Branding</title>
+<meta name="description" content="Pixora Studio is a boutique digital agency helping small businesses, startups and personal brands grow online. Web design, SEO, paid ads, email marketing & branding. Starting from R800.">
+<meta name="keywords" content="digital agency South Africa, web design, SEO, paid ads, email marketing, logo design, Google Business Profile, Pixora Studio">
+<link rel="canonical" href="https://pixorastudio.co.za/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Pixora Studio","description":"Boutique digital agency offering web design, SEO, paid ads, email marketing and branding.","url":"https://pixorastudio.co.za","telephone":"+27630007335","address":{"@type":"PostalAddress","addressCountry":"ZA"},"priceRange":"R800–R3600"}</script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   RESET & VARIABLES
+═══════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --cream:#F5F0E8;--sand:#E8DCC8;--tan:#C9AD8A;--amber:#B8895A;
+  --rust:#9B6240;--bark:#6B4226;--forest:#3D5A45;--sage:#7A9E82;
+  --mist:#B8CCBA;--charcoal:#2C2420;--warm:#FAF7F2;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;color:var(--charcoal);background:var(--cream);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;}
+button{font-family:'Jost',sans-serif;}
+
+/* ═══════════════════════════════════════
+   TYPOGRAPHY HELPERS
+═══════════════════════════════════════ */
+.lbl{font-size:9px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:10px;}
+.h2{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(28px,4vw,50px);line-height:1.15;color:var(--charcoal);}
+.h2 em{color:var(--rust);font-style:italic;}
+.h2-light{color:var(--warm);}
+.h2-light em{color:var(--amber);}
+.body-txt{font-size:14px;font-weight:300;color:#666;line-height:1.9;}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--tan),transparent);}
+
+/* ═══════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════ */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 30px;border-radius:3px;font-size:10px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;transition:all .2s;cursor:pointer;border:none;white-space:nowrap;}
+.btn-lg{padding:16px 38px;}
+.btn-amber{background:var(--amber);color:#fff;} .btn-amber:hover{background:var(--rust);}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.3);color:var(--warm);} .btn-ghost:hover{border-color:var(--warm);background:rgba(255,255,255,.06);}
+.btn-outline{background:transparent;border:1px solid var(--amber);color:var(--amber);} .btn-outline:hover{background:var(--amber);color:#fff;}
+.btn-dark{background:var(--charcoal);color:#fff;} .btn-dark:hover{background:#1a1210;}
+.btn-ghost-dark{background:transparent;border:1px solid rgba(44,36,32,.3);color:var(--charcoal);} .btn-ghost-dark:hover{border-color:var(--charcoal);}
+.btn-forest{background:var(--forest);color:#fff;} .btn-forest:hover{background:#2e4434;}
+.btn-sage{background:var(--sage);color:#fff;} .btn-sage:hover{background:#6a9070;}
+
+/* ═══════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════ */
+nav{position:sticky;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:22px 56px;transition:all .35s;background:rgba(44,36,32,.98);backdrop-filter:blur(16px);box-shadow:0 2px 24px rgba(0,0,0,.25);}
+nav.scrolled{padding:14px 56px;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:21px;letter-spacing:6px;color:var(--warm);text-transform:uppercase;}
+.nav-logo span{color:var(--amber);}
+.nav-logo small{font-size:13px;letter-spacing:4px;color:var(--tan);}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{font-size:10px;font-weight:400;letter-spacing:2.5px;text-transform:uppercase;color:rgba(250,247,242,.65);transition:color .2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--amber);transition:width .25s;}
+.nav-links a:hover,.nav-links a.active{color:var(--warm);}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-btns{display:flex;gap:10px;}
+.hamburger{display:none;background:none;border:none;color:var(--warm);font-size:26px;cursor:pointer;padding:2px;}
+
+/* Mobile Nav */
+.mob-nav{display:none;position:fixed;inset:0;background:var(--charcoal);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:30px;}
+.mob-nav.show{display:flex;}
+.mob-nav a{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--warm);letter-spacing:3px;transition:color .2s;}
+.mob-nav a:hover{color:var(--amber);}
+.mob-close{position:absolute;top:22px;right:28px;background:none;border:none;color:var(--tan);font-size:30px;cursor:pointer;}
+
+/* ═══════════════════════════════════════
+   1. HERO
+═══════════════════════════════════════ */
+#home{background:var(--charcoal);min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 64px 100px;position:relative;overflow:hidden;}
+.h-glow1{position:absolute;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(184,137,90,.11),transparent 65%);top:-200px;right:-200px;pointer-events:none;}
+.h-glow2{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(61,90,69,.13),transparent 65%);bottom:-80px;left:40px;pointer-events:none;}
+.h-grain{position:absolute;inset:0;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");pointer-events:none;}
+.hero-inner{position:relative;z-index:2;max-width:860px;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:9px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--amber);margin-bottom:28px;animation:fadeUp .9s ease both;}
+.hero-eyebrow::before{content:'';width:36px;height:1px;background:var(--amber);}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(48px,8vw,100px);color:var(--warm);line-height:1.02;letter-spacing:-1px;margin-bottom:32px;animation:fadeUp .9s .1s ease both;}
+.hero-h1 em{color:var(--amber);font-style:italic;}
+.hero-h1 .row2{display:block;padding-left:72px;}
+.hero-desc{font-size:16px;font-weight:300;color:var(--tan);max-width:500px;line-height:1.9;margin-bottom:48px;animation:fadeUp .9s .2s ease both;}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .9s .3s ease both;}
+.hero-stats{position:absolute;bottom:52px;right:64px;display:flex;gap:48px;z-index:2;animation:fadeUp .9s .5s ease both;}
+.stat-n{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:var(--warm);line-height:1;display:block;}
+.stat-l{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--tan);margin-top:4px;display:block;}
+
+/* Ticker */
+.ticker{background:var(--amber);padding:17px 0;overflow:hidden;}
+.ticker-inner{display:flex;white-space:nowrap;animation:marquee 24s linear infinite;}
+.t-item{display:inline-flex;align-items:center;gap:14px;padding:0 28px;font-size:10px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:#fff;flex-shrink:0;}
+.t-dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.4);}
+
+/* ═══════════════════════════════════════
+   2. ABOUT
+═══════════════════════════════════════ */
+#about{background:var(--cream);padding:100px 64px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.about-body p{font-size:14px;font-weight:300;color:#555;line-height:1.9;margin-bottom:18px;}
+.about-btns{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;}
+.about-card{background:var(--charcoal);border-radius:6px;padding:52px 44px;position:relative;overflow:hidden;}
+.about-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(184,137,90,.12),transparent 60%);pointer-events:none;}
+.about-quote{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;font-style:italic;color:var(--warm);line-height:1.35;margin-bottom:32px;position:relative;z-index:1;}
+.about-quote span{color:var(--amber);font-style:normal;}
+.pillars{display:flex;flex-direction:column;gap:14px;position:relative;z-index:1;}
+.pillar{display:flex;align-items:center;gap:14px;}
+.pill-ico{width:36px;height:36px;border-radius:50%;background:rgba(184,137,90,.18);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.pill-txt{font-size:12px;font-weight:300;color:var(--tan);}
+
+/* ═══════════════════════════════════════
+   3. SERVICES
+═══════════════════════════════════════ */
+#services{background:var(--charcoal);padding:100px 64px;}
+.svc-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.svc{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);padding:44px 32px;position:relative;overflow:hidden;transition:background .3s,border-color .3s;}
+.svc::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.svc:hover{background:rgba(255,255,255,.065);border-color:rgba(184,137,90,.2);}
+.svc:hover::after{transform:scaleX(1);}
+.svc-num{font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:300;color:rgba(184,137,90,.1);line-height:1;margin-bottom:16px;display:block;}
+.svc-ico{font-size:26px;margin-bottom:12px;display:block;}
+.svc-name{font-size:15px;font-weight:500;color:var(--warm);margin-bottom:10px;}
+.svc-desc{font-size:12px;font-weight:300;color:var(--tan);line-height:1.85;margin-bottom:16px;}
+.tags{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);background:rgba(184,137,90,.1);padding:3px 9px;border-radius:20px;}
+
+/* Addons */
+.addons{margin-top:52px;}
+.addons-head{margin-bottom:20px;}
+.addons-head h3{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28px;color:var(--warm);}
+.addons-head p{font-size:12px;font-weight:300;color:var(--tan);margin-top:4px;}
+.addons-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.acard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:5px;padding:26px 22px;transition:border-color .3s;}
+.acard:hover{border-color:var(--amber);}
+.acard-ico{font-size:20px;margin-bottom:10px;display:block;}
+.acard-name{font-size:13px;font-weight:500;color:var(--warm);margin-bottom:5px;}
+.acard-desc{font-size:11px;font-weight:300;color:var(--tan);line-height:1.7;margin-bottom:12px;}
+.acard-price{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--amber);}
+.acard-note{font-size:9px;color:rgba(201,173,138,.5);margin-top:2px;}
+
+/* ═══════════════════════════════════════
+   4. PROCESS
+═══════════════════════════════════════ */
+#process{background:var(--sand);padding:100px 64px;}
+.proc-center{text-align:center;margin-bottom:56px;}
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.pstep{background:var(--warm);padding:42px 28px;position:relative;}
+.pstep::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;}
+.pstep:nth-child(1)::before{background:var(--amber);}
+.pstep:nth-child(2)::before{background:var(--rust);}
+.pstep:nth-child(3)::before{background:var(--forest);}
+.pstep:nth-child(4)::before{background:var(--sage);}
+.pstep-n{font-family:'Cormorant Garamond',serif;font-size:58px;font-weight:300;color:var(--sand);line-height:1;margin-bottom:14px;display:block;}
+.pstep-t{font-size:13px;font-weight:600;color:var(--charcoal);margin-bottom:8px;letter-spacing:.5px;}
+.pstep-d{font-size:12px;font-weight:300;color:#777;line-height:1.85;}
+
+/* ═══════════════════════════════════════
+   5. PRICING
+═══════════════════════════════════════ */
+#pricing{background:var(--cream);padding:100px 64px;}
+.pricing-top{text-align:center;margin-bottom:56px;}
+.pricing-top .h2{margin-bottom:10px;}
+.pricing-top p{font-size:14px;font-weight:300;color:#777;max-width:480px;margin:0 auto;line-height:1.8;}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start;}
+.pkg{border-radius:6px;overflow:hidden;box-shadow:0 4px 28px rgba(44,36,32,.08);transition:transform .3s,box-shadow .3s;position:relative;}
+.pkg:hover{transform:translateY(-6px);box-shadow:0 14px 44px rgba(44,36,32,.14);}
+.pkg.mid{transform:scale(1.04);}
+.pkg.mid:hover{transform:scale(1.04) translateY(-6px);}
+/* starter */
+.pkg.s .ph{background:var(--sand);} .pkg.s .pl{color:var(--rust);} .pkg.s .pn{color:var(--charcoal);} .pkg.s .pt{color:var(--bark);} .pkg.s .pp{color:var(--rust);} .pkg.s .ppn{color:var(--amber);} .pkg.s .pb{background:var(--warm);} .pkg.s .ck{color:var(--rust);} .pkg.s .pbtn{background:transparent;border:2px solid var(--rust);color:var(--rust);} .pkg.s .pbtn:hover{background:var(--rust);color:#fff;}
+/* growth */
+.pkg.g .ph{background:var(--charcoal);} .pkg.g .pl{color:var(--amber);} .pkg.g .pn{color:var(--warm);} .pkg.g .pt{color:var(--tan);} .pkg.g .pp{color:var(--amber);} .pkg.g .ppn{color:var(--tan);} .pkg.g .pb{background:#fff;} .pkg.g .ck{color:var(--amber);} .pkg.g .pbtn{background:var(--amber);border:2px solid var(--amber);color:#fff;} .pkg.g .pbtn:hover{background:var(--rust);border-color:var(--rust);}
+/* premium */
+.pkg.p .ph{background:var(--forest);} .pkg.p .pl{color:var(--sage);} .pkg.p .pn{color:var(--warm);} .pkg.p .pt{color:var(--mist);} .pkg.p .pp{color:var(--sage);} .pkg.p .ppn{color:var(--mist);} .pkg.p .pb{background:var(--warm);} .pkg.p .ck{color:var(--forest);} .pkg.p .pbtn{background:var(--forest);border:2px solid var(--forest);color:#fff;} .pkg.p .pbtn:hover{background:#2e4434;border-color:#2e4434;}
+
+.hot{position:absolute;top:14px;right:14px;background:var(--amber);color:#fff;font-size:7px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:5px 11px;border-radius:20px;}
+.ph{padding:34px 30px 28px;position:relative;}
+.pl{font-size:9px;letter-spacing:3px;text-transform:uppercase;font-weight:500;margin-bottom:7px;display:block;}
+.pn{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:30px;display:block;margin-bottom:5px;}
+.pt{font-size:11px;font-weight:300;display:block;line-height:1.5;margin-bottom:20px;}
+.pp{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:50px;display:block;line-height:1;}
+.ppn{font-size:10px;font-weight:300;letter-spacing:1px;margin-top:5px;display:block;}
+.pb{padding:28px;}
+.pst{font-size:8px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#aaa;margin-bottom:10px;margin-top:18px;display:block;}
+.pst:first-child{margin-top:0;}
+.pfl{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.pfl li{display:flex;align-items:flex-start;gap:9px;font-size:12px;font-weight:300;color:var(--charcoal);line-height:1.5;}
+.ck{font-size:11px;flex-shrink:0;margin-top:1px;}
+.pdiv{height:1px;background:var(--sand);margin:15px 0;}
+.ptime{display:flex;align-items:center;gap:7px;font-size:10px;color:#aaa;margin-bottom:18px;}
+.pbtn{width:100%;padding:13px;border-radius:3px;font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+
+/* Comparison */
+.compare{margin-top:60px;overflow-x:auto;}
+.ctbl{width:100%;border-collapse:collapse;background:#fff;border-radius:6px;overflow:hidden;box-shadow:0 4px 24px rgba(44,36,32,.06);font-size:12px;min-width:600px;}
+.ctbl th{padding:16px 18px;font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:500;text-align:left;}
+.ctbl th:first-child{background:var(--cream);color:var(--charcoal);}
+.ctbl th.sh{background:var(--sand);color:var(--rust);}
+.ctbl th.gh{background:var(--charcoal);color:var(--amber);}
+.ctbl th.ph{background:var(--forest);color:var(--sage);}
+.ctbl td{padding:11px 18px;border-bottom:1px solid var(--sand);font-weight:300;color:var(--charcoal);vertical-align:middle;}
+.ctbl tr:last-child td{border-bottom:none;}
+.ctbl tr:nth-child(even) td{background:#fafafa;}
+.ctbl td:first-child{font-weight:400;font-size:11px;}
+.tick{color:var(--forest);} .cross{color:#ddd;} .val{color:var(--amber);font-weight:500;}
+
+/* ═══════════════════════════════════════
+   6. TESTIMONIALS
+═══════════════════════════════════════ */
+#testimonials{background:var(--charcoal);padding:100px 64px;}
+.testi-top{text-align:center;margin-bottom:56px;}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.tcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:36px 28px;transition:border-color .3s;}
+.tcard:hover{border-color:var(--amber);}
+.tcard:nth-child(2){margin-top:24px;}
+.tqm{font-family:'Cormorant Garamond',serif;font-size:68px;color:rgba(184,137,90,.18);line-height:.5;margin-bottom:18px;display:block;}
+.tstars{color:var(--amber);font-size:12px;margin-bottom:12px;letter-spacing:2px;}
+.ttxt{font-size:13px;font-weight:300;color:var(--mist);line-height:1.9;font-style:italic;margin-bottom:22px;}
+.tauthor{display:flex;align-items:center;gap:12px;}
+.tavatar{width:40px;height:40px;border-radius:50%;background:rgba(184,137,90,.2);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--amber);flex-shrink:0;}
+.tname{font-size:13px;font-weight:500;color:var(--warm);}
+.trole{font-size:10px;color:var(--amber);font-weight:300;letter-spacing:.5px;}
+
+/* ═══════════════════════════════════════
+   7. LEAD MAGNET
+═══════════════════════════════════════ */
+#lead{background:var(--forest);padding:88px 64px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.lead-lbl{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--sage);margin-bottom:12px;display:block;}
+.lead-h{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(26px,3vw,42px);color:var(--warm);line-height:1.25;margin-bottom:16px;}
+.lead-h em{color:var(--mist);font-style:italic;}
+.lead-p{font-size:13px;font-weight:300;color:var(--mist);line-height:1.85;margin-bottom:24px;}
+.lead-list{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.lead-list li{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:300;color:var(--mist);}
+.lead-list li span{color:var(--sage);}
+.lead-form{display:flex;flex-direction:column;gap:13px;}
+.lead-form input{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:3px;padding:13px 16px;font-family:'Jost',sans-serif;font-size:12px;font-weight:300;color:#fff;outline:none;transition:border-color .2s;}
+.lead-form input::placeholder{color:rgba(255,255,255,.28);}
+.lead-form input:focus{border-color:var(--sage);}
+.lead-submit{background:var(--sage);color:#fff;border:none;padding:15px;border-radius:3px;font-size:10px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;transition:background .2s;}
+.lead-submit:hover{background:#6a9070;}
+.lead-note{font-size:9px;color:rgba(184,204,186,.45);text-align:center;}
+
+/* ═══════════════════════════════════════
+   8. FAQ
+═══════════════════════════════════════ */
+#faq{background:var(--cream);padding:100px 64px;}
+.faq-wrap{max-width:740px;margin:52px auto 0;}
+.fi{border-bottom:1px solid var(--sand);}
+.fq{width:100%;background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:22px 0;font-size:14px;font-weight:400;color:var(--charcoal);text-align:left;gap:16px;transition:color .2s;}
+.fq:hover{color:var(--amber);}
+.fi-ico{font-size:20px;color:var(--amber);transition:transform .3s;flex-shrink:0;}
+.fa{display:none;padding:0 0 20px;font-size:13px;font-weight:300;color:#666;line-height:1.9;}
+.fi.open .fi-ico{transform:rotate(45deg);}
+.fi.open .fa{display:block;}
+
+/* ═══════════════════════════════════════
+   9. BLOG
+═══════════════════════════════════════ */
+#blog{background:var(--sand);padding:100px 64px;}
+.blog-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.bcard{background:#fff;border-radius:6px;overflow:hidden;box-shadow:0 4px 16px rgba(44,36,32,.06);transition:transform .3s,box-shadow .3s;}
+.bcard:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(44,36,32,.1);}
+.bimg{height:170px;display:flex;align-items:center;justify-content:center;font-size:48px;}
+.bimg.i1{background:var(--charcoal);} .bimg.i2{background:var(--forest);} .bimg.i3{background:var(--rust);}
+.bimg.i4{background:var(--bark);} .bimg.i5{background:var(--amber);} .bimg.i6{background:#2C2420;}
+.bbody{padding:22px 20px;}
+.bcat{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);font-weight:500;display:block;margin-bottom:7px;}
+.btitle{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;color:var(--charcoal);line-height:1.3;margin-bottom:8px;}
+.bexc{font-size:11px;font-weight:300;color:#777;line-height:1.8;margin-bottom:14px;}
+.bmeta{display:flex;justify-content:space-between;}
+.bdate{font-size:9px;color:#bbb;font-weight:300;}
+.bread{font-size:9px;color:var(--amber);font-weight:500;letter-spacing:1px;}
+
+/* Newsletter */
+.nl-bar{background:var(--charcoal);border-radius:6px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:52px;}
+.nl-h{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28px;color:var(--warm);margin-bottom:6px;}
+.nl-p{font-size:12px;font-weight:300;color:var(--tan);line-height:1.7;}
+.nl-form{display:flex;gap:10px;}
+.nl-form input{flex:1;padding:13px 16px;border:1px solid rgba(255,255,255,.12);border-radius:3px;background:rgba(255,255,255,.06);font-family:'Jost',sans-serif;font-size:12px;font-weight:300;color:#fff;outline:none;min-width:0;}
+.nl-form input::placeholder{color:rgba(255,255,255,.25);}
+.nl-form button{padding:13px 22px;background:var(--amber);color:#fff;border:none;border-radius:3px;font-size:9px;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:background .2s;}
+.nl-form button:hover{background:var(--rust);}
+
+/* ═══════════════════════════════════════
+   10. CONTACT
+═══════════════════════════════════════ */
+#contact{background:var(--cream);padding:100px 64px;display:grid;grid-template-columns:1fr 1.25fr;gap:72px;}
+.ci p{font-size:14px;font-weight:300;color:#666;line-height:1.9;margin-bottom:32px;}
+.cmethods{display:flex;flex-direction:column;gap:14px;margin-bottom:32px;}
+.cm{display:flex;align-items:flex-start;gap:13px;padding:17px;background:#fff;border-radius:4px;border:1px solid var(--sand);transition:border-color .2s;}
+.cm:hover{border-color:var(--amber);}
+.cm-ico{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.cm-ico.ph{background:rgba(184,137,90,.1);}
+.cm-ico.wa{background:rgba(37,211,102,.1);}
+.cm-ico.em{background:rgba(61,90,69,.1);}
+.cm-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:3px;display:block;}
+.cm-val{font-size:14px;font-weight:400;color:var(--charcoal);}
+.cm-note{font-size:10px;color:#aaa;font-weight:300;margin-top:1px;display:block;}
+.wa-btn{display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;padding:13px 22px;border-radius:3px;font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;transition:background .2s;}
+.wa-btn:hover{background:#1da851;}
+
+/* Contact Form */
+.cform-box{background:#fff;border-radius:6px;padding:44px;box-shadow:0 8px 40px rgba(44,36,32,.08);}
+.cform-t{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:400;color:var(--charcoal);margin-bottom:5px;}
+.cform-s{font-size:12px;font-weight:300;color:#999;margin-bottom:28px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:13px;}
+.fg.full{grid-column:1/-1;}
+.flbl{font-size:9px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--charcoal);}
+.fi2,.fsel,.fta{padding:12px 14px;border:1px solid var(--sand);border-radius:3px;font-family:'Jost',sans-serif;font-size:12px;font-weight:300;color:var(--charcoal);background:var(--warm);outline:none;transition:border-color .2s;width:100%;}
+.fi2:focus,.fsel:focus,.fta:focus{border-color:var(--amber);background:#fff;}
+.fta{resize:vertical;min-height:100px;}
+.fsub{width:100%;padding:14px;background:var(--amber);color:#fff;border:none;border-radius:3px;font-size:10px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;transition:background .2s;margin-top:4px;}
+.fsub:hover{background:var(--rust);}
+.fpri{font-size:9px;font-weight:300;color:#ccc;text-align:center;margin-top:8px;}
+.fpri a{color:var(--amber);}
+
+/* ═══════════════════════════════════════
+   11. CTA BAND
+═══════════════════════════════════════ */
+.cta-band{background:var(--amber);padding:72px 64px;display:flex;justify-content:space-between;align-items:center;gap:40px;}
+.cta-band h2{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(26px,3.5vw,46px);color:#fff;line-height:1.2;}
+.cta-band h2 strong{font-weight:500;}
+.cta-btns{display:flex;gap:12px;flex-shrink:0;}
+
+/* ═══════════════════════════════════════
+   12. LEGAL
+═══════════════════════════════════════ */
+#legal{background:var(--charcoal);padding:72px 64px;}
+.legal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px;}
+.lcard{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:4px;padding:30px 26px;}
+.lcard h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--warm);margin-bottom:10px;}
+.lcard p{font-size:12px;font-weight:300;color:var(--tan);line-height:1.8;}
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer{background:var(--charcoal);border-top:1px solid rgba(255,255,255,.06);}
+.ft-top{padding:60px 64px 44px;display:grid;grid-template-columns:240px 1fr;gap:72px;}
+.flogo{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:21px;letter-spacing:5px;color:var(--warm);text-transform:uppercase;margin-bottom:8px;}
+.flogo span{color:var(--amber);}
+.flogo-sub{font-size:13px;letter-spacing:4px;color:var(--tan);}
+.ftagline{font-size:12px;font-style:italic;color:var(--tan);font-family:'Cormorant Garamond',serif;margin-bottom:20px;}
+.fsocials{display:flex;gap:8px;}
+.fsoc{width:34px;height:34px;border:1px solid rgba(255,255,255,.14);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;color:var(--tan);transition:all .2s;}
+.fsoc:hover{border-color:var(--amber);color:var(--amber);}
+.fcols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.fcol{display:flex;flex-direction:column;gap:9px;}
+.fct{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:4px;font-weight:500;}
+.fcol a{font-size:12px;font-weight:300;color:var(--tan);transition:color .2s;}
+.fcol a:hover{color:var(--warm);}
+.ft-bot{border-top:1px solid rgba(255,255,255,.06);padding:16px 64px;display:flex;justify-content:space-between;align-items:center;}
+.ft-bot p{font-size:10px;font-weight:300;color:rgba(201,173,138,.4);}
+
+/* ═══════════════════════════════════════
+   FLOATS & OVERLAYS
+═══════════════════════════════════════ */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:900;width:54px;height:54px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s,box-shadow .2s;}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,.55);}
+
+.cookie{position:fixed;bottom:0;left:0;right:0;z-index:800;background:rgba(44,36,32,.97);backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,.07);padding:14px 48px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.cookie p{font-size:11px;font-weight:300;color:var(--tan);}
+.cookie a{color:var(--amber);text-decoration:underline;}
+.cookie-btns{display:flex;gap:8px;flex-shrink:0;}
+
+/* ═══════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+@keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — TABLET (≤1024px)
+═══════════════════════════════════════ */
+@media(max-width:1024px){
+  nav,nav.scrolled{padding:16px 32px;}
+  #home{padding:60px 40px 80px;}
+  .hero-stats{right:40px;gap:32px;}
+  #about{padding:80px 40px;grid-template-columns:1fr;gap:40px;}
+  #services{padding:80px 40px;}
+  .svc-grid{grid-template-columns:repeat(2,1fr);}
+  .addons-grid{grid-template-columns:repeat(2,1fr);}
+  #process{padding:80px 40px;}
+  .proc-grid{grid-template-columns:repeat(2,1fr);}
+  #pricing{padding:80px 40px;}
+  .pkg-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto;}
+  .pkg.mid{transform:none;}
+  .pkg.mid:hover{transform:translateY(-6px);}
+  #testimonials{padding:80px 40px;}
+  .testi-grid{grid-template-columns:1fr;max-width:500px;margin:0 auto;}
+  .tcard:nth-child(2){margin-top:0;}
+  #lead{padding:72px 40px;grid-template-columns:1fr;gap:40px;}
+  #faq{padding:80px 40px;}
+  #blog{padding:80px 40px;}
+  .blog-grid{grid-template-columns:repeat(2,1fr);}
+  .nl-bar{grid-template-columns:1fr;gap:20px;}
+  #contact{padding:80px 40px;grid-template-columns:1fr;gap:40px;}
+  #legal{padding:60px 40px;}
+  .legal-grid{grid-template-columns:1fr;}
+  .ft-top{padding:48px 40px 36px;grid-template-columns:1fr;gap:36px;}
+  .ft-bot{padding:14px 40px;}
+  .fcols{grid-template-columns:repeat(2,1fr);}
+  .cookie{padding:14px 32px;}
+  .cta-band{padding:60px 40px;}
+}
+
+/* ═══════════════════════════════════════
+   RESPONSIVE — MOBILE (≤768px)
+═══════════════════════════════════════ */
+@media(max-width:768px){
+  nav,nav.scrolled{padding:16px 20px;}
+  .nav-links,.nav-btns{display:none;}
+  .hamburger{display:block;}
+
+  #home{padding:48px 20px 80px;}
+  .hero-h1{font-size:clamp(38px,10vw,56px);letter-spacing:-.5px;}
+  .hero-h1 .row2{padding-left:0;}
+  .hero-desc{font-size:14px;}
+  .hero-ctas{gap:10px;}
+  .hero-ctas .btn-lg{padding:14px 24px;font-size:9px;}
+  .hero-stats{display:none;}
+
+  .ticker-inner{animation-duration:16s;}
+  .t-item{padding:0 18px;font-size:9px;}
+
+  #about{padding:64px 20px;gap:32px;}
+  .about-card{padding:36px 28px;}
+  .about-quote{font-size:24px;}
+
+  #services{padding:64px 20px;}
+  .svc-header{flex-direction:column;align-items:flex-start;gap:16px;margin-bottom:36px;}
+  .svc-grid{grid-template-columns:1fr;}
+  .addons-grid{grid-template-columns:1fr;}
+  .addons{margin-top:40px;}
+
+  #process{padding:64px 20px;}
+  .proc-grid{grid-template-columns:1fr 1fr;}
+  .pstep{padding:28px 20px;}
+
+  #pricing{padding:64px 20px;}
+  .pricing-top{margin-bottom:36px;}
+  .pkg-grid{max-width:100%;}
+
+  #testimonials{padding:64px 20px;}
+  .testi-grid{max-width:100%;}
+
+  #lead{padding:64px 20px;gap:36px;}
+
+  #faq{padding:64px 20px;}
+
+  #blog{padding:64px 20px;}
+  .blog-top{flex-direction:column;align-items:flex-start;gap:14px;margin-bottom:32px;}
+  .blog-grid{grid-template-columns:1fr;}
+  .nl-bar{padding:32px 24px;}
+  .nl-form{flex-direction:column;}
+
+  #contact{padding:64px 20px;gap:36px;}
+  .frow{grid-template-columns:1fr;}
+  .cform-box{padding:28px 20px;}
+
+  .cta-band{flex-direction:column;text-align:center;padding:52px 20px;gap:24px;}
+  .cta-btns{flex-wrap:wrap;justify-content:center;}
+
+  #legal{padding:52px 20px;}
+  .legal-grid{grid-template-columns:1fr;}
+
+  .ft-top{padding:40px 20px 28px;}
+  .fcols{grid-template-columns:repeat(2,1fr);gap:20px;}
+  .ft-bot{flex-direction:column;gap:6px;text-align:center;padding:14px 20px;}
+
+  .cookie{flex-direction:column;padding:14px 20px;gap:12px;}
+  .cookie-btns{width:100%;justify-content:center;}
+}
+
+@media(max-width:480px){
+  .hero-h1{font-size:38px;}
+  .proc-grid{grid-template-columns:1fr;}
+  .fcols{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav id="nav">
+  <a href="#home" class="nav-logo">PIX<span>O</span>RA <small>STUDIO</small></a>
+  <div class="nav-links">
+    <a href="#home" class="active">Home</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#pricing">Pricing</a>
+    <a href="pixora-studio-blog.html">Blog</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-btns">
+    <a href="#contact" class="btn btn-ghost">Get a Quote</a>
+    <a href="#contact" class="btn btn-amber">Book a Call</a>
+  </div>
+  <button class="hamburger" id="ham">☰</button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mob-nav" id="mobNav">
+  <button class="mob-close" id="mobClose">✕</button>
+  <a href="#home"         onclick="closeMob()">Home</a>
+  <a href="#services"     onclick="closeMob()">Services</a>
+  <a href="#about"        onclick="closeMob()">About</a>
+  <a href="#pricing"      onclick="closeMob()">Pricing</a>
+  <a href="pixora-studio-blog.html" onclick="closeMob()">Blog</a>
+  <a href="#contact"      onclick="closeMob()">Contact</a>
+  <a href="#contact" class="btn btn-amber btn-lg" onclick="closeMob()" style="margin-top:8px;">Book a Free Call</a>
+</div>
+
+<!-- ═══════════════ 1. HERO ═══════════════ -->
+<section id="home">
+  <div class="h-grain"></div><div class="h-glow1"></div><div class="h-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Boutique Digital Agency · South Africa</div>
+    <h1 class="hero-h1">
+      We Build Digital
+      <em><span class="row2">Presence That Converts</span></em>
+    </h1>
+    <p class="hero-desc">Helping small businesses, startups and personal brands grow online through premium web design, SEO, paid ads and email marketing — so you can focus on what you do best.</p>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn btn-amber btn-lg">Book a Free Call</a>
+      <a href="#services" class="btn btn-ghost btn-lg">Explore Services</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div><span class="stat-n">3</span><span class="stat-l">Packages</span></div>
+    <div><span class="stat-n">6+</span><span class="stat-l">Services</span></div>
+    <div><span class="stat-n">100%</span><span class="stat-l">Client Focused</span></div>
+  </div>
+</section>
+
+<!-- Ticker -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span class="t-item">Web Development</span><span class="t-dot"></span>
+    <span class="t-item">SEO Optimisation</span><span class="t-dot"></span>
+    <span class="t-item">Paid Ads Management</span><span class="t-dot"></span>
+    <span class="t-item">Email Marketing</span><span class="t-dot"></span>
+    <span class="t-item">Logo &amp; Branding</span><span class="t-dot"></span>
+    <span class="t-item">Google Business Profile</span><span class="t-dot"></span>
+    <span class="t-item">Web Development</span><span class="t-dot"></span>
+    <span class="t-item">SEO Optimisation</span><span class="t-dot"></span>
+    <span class="t-item">Paid Ads Management</span><span class="t-dot"></span>
+    <span class="t-item">Email Marketing</span><span class="t-dot"></span>
+    <span class="t-item">Logo &amp; Branding</span><span class="t-dot"></span>
+    <span class="t-item">Google Business Profile</span><span class="t-dot"></span>
+  </div>
+</div>
+
+<!-- ═══════════════ 2. ABOUT ═══════════════ -->
+<section id="about">
+  <div class="about-body">
+    <span class="lbl">Who We Are</span>
+    <h2 class="h2" style="margin-bottom:20px;">A boutique studio built for <em>real results</em></h2>
+    <p>Most small businesses and startups struggle to build a credible online presence — they either can't afford a big agency, or get lost trying to do it themselves.</p>
+    <p>Pixora Studio was built to change that. We deliver premium digital services at accessible price points, with the personal attention of a dedicated studio partner — not a faceless corporation.</p>
+    <p>We work with small businesses, startups, e-commerce brands and personal brands across South Africa and beyond — helping them build a digital presence that reflects the real quality of their work.</p>
+    <div class="about-btns">
+      <a href="#contact" class="btn btn-amber">Work With Us</a>
+      <a href="#pricing" class="btn btn-outline">View Packages</a>
+    </div>
+  </div>
+  <div class="about-card">
+    <p class="about-quote">"Where <span>vision</span> meets digital."</p>
+    <div class="pillars">
+      <div class="pillar"><div class="pill-ico">🎯</div><span class="pill-txt">Strategy-first approach to every project</span></div>
+      <div class="pillar"><div class="pill-ico">✦</div><span class="pill-txt">Premium quality at boutique pricing</span></div>
+      <div class="pillar"><div class="pill-ico">🤝</div><span class="pill-txt">Personal service with dedicated support</span></div>
+      <div class="pillar"><div class="pill-ico">📈</div><span class="pill-txt">Focused on measurable growth outcomes</span></div>
+      <div class="pillar"><div class="pill-ico">💛</div><span class="pill-txt">Genuine care for every client's success</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════ 3. SERVICES ═══════════════ -->
+<section id="services">
+  <div class="svc-header">
+    <div>
+      <span class="lbl" style="color:var(--amber)">What We Do</span>
+      <h2 class="h2 h2-light">Services that <em>move the needle</em></h2>
+    </div>
+    <a href="#contact" class="btn btn-ghost">Get a Quote →</a>
+  </div>
+
+  <div class="svc-grid">
+    <div class="svc"><span class="svc-num">01</span><span class="svc-ico">🌐</span><div class="svc-name">Web Development</div><p class="svc-desc">Fast, mobile-responsive websites designed to convert visitors into customers — from 1-page sites to full multi-page builds with domain &amp; hosting.</p><div class="tags"><span class="tag">Responsive</span><span class="tag">SEO-Ready</span><span class="tag">Fast</span></div></div>
+    <div class="svc"><span class="svc-num">02</span><span class="svc-ico">🔍</span><div class="svc-name">SEO Optimisation</div><p class="svc-desc">Get found on Google by clients already searching for what you offer. Keyword research, on-page SEO, Search Console &amp; Analytics setup.</p><div class="tags"><span class="tag">On-Page SEO</span><span class="tag">Keywords</span><span class="tag">Analytics</span></div></div>
+    <div class="svc"><span class="svc-num">03</span><span class="svc-ico">📣</span><div class="svc-name">Paid Ads</div><p class="svc-desc">Meta and Google ad campaigns built with intent — audience targeting, creative strategy and campaign launch covered end to end.</p><div class="tags"><span class="tag">Meta Ads</span><span class="tag">Google Ads</span><span class="tag">Strategy</span></div></div>
+    <div class="svc"><span class="svc-num">04</span><span class="svc-ico">📧</span><div class="svc-name">Email Marketing</div><p class="svc-desc">Branded email setup, welcome sequences and list-building systems that keep your audience engaged and converting.</p><div class="tags"><span class="tag">Mailchimp</span><span class="tag">Sequences</span><span class="tag">Templates</span></div></div>
+    <div class="svc"><span class="svc-num">05</span><span class="svc-ico">🎨</span><div class="svc-name">Logo &amp; Branding</div><p class="svc-desc">Custom logos, brand color palettes, font systems and style guides — everything you need to look premium from day one.</p><div class="tags"><span class="tag">Logo Design</span><span class="tag">Style Guide</span><span class="tag">Brand Kit</span></div></div>
+    <div class="svc"><span class="svc-num">06</span><span class="svc-ico">📍</span><div class="svc-name">Google Business Profile</div><p class="svc-desc">Get your business verified and optimised on Google Maps so local customers can find and choose you instantly.</p><div class="tags"><span class="tag">Local SEO</span><span class="tag">Google Maps</span><span class="tag">Verified</span></div></div>
+  </div>
+
+  <!-- Add-ons -->
+  <div class="addons">
+    <div class="addons-head">
+      <span class="lbl" style="color:var(--amber)">À La Carte Add-Ons</span>
+      <h3 class="nl-h">Need something specific?</h3>
+      <p class="nl-p">Available standalone or added on top of any package.</p>
+    </div>
+    <div class="addons-grid">
+      <div class="acard"><span class="acard-ico">📣</span><div class="acard-name">Paid Ads Setup</div><div class="acard-desc">Full Meta or Google ad campaign setup, targeting &amp; launch.</div><div class="acard-price">R1,100</div><div class="acard-note">One-time · Ad spend billed separately</div></div>
+      <div class="acard"><span class="acard-ico">📋</span><div class="acard-name">Business Portfolio / Profile</div><div class="acard-desc">Professionally designed digital portfolio or branded business profile.</div><div class="acard-price">R300</div><div class="acard-note">One-time · Digital delivery</div></div>
+      <div class="acard"><span class="acard-ico">📧</span><div class="acard-name">Email Marketing Setup</div><div class="acard-desc">Platform setup, branded template, sign-up form &amp; 3-email welcome sequence.</div><div class="acard-price">R700</div><div class="acard-note">One-time · Platform fees separate</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 4. PROCESS ═══════════════ -->
+<section id="process">
+  <div class="proc-center">
+    <span class="lbl">How It Works</span>
+    <h2 class="h2">Our Simple <em>4-Step Process</em></h2>
+  </div>
+  <div class="proc-grid">
+    <div class="pstep"><span class="pstep-n">01</span><div class="pstep-t">Discovery Call</div><p class="pstep-d">A free 30-minute call to understand your goals, challenges and what success looks like for your business.</p></div>
+    <div class="pstep"><span class="pstep-n">02</span><div class="pstep-t">Strategy &amp; Proposal</div><p class="pstep-d">A tailored proposal with clear scope, timeline and pricing — no surprises, no jargon, no hidden fees.</p></div>
+    <div class="pstep"><span class="pstep-n">03</span><div class="pstep-t">Build &amp; Deliver</div><p class="pstep-d">We get to work and keep you updated throughout. You review, we refine — until it's exactly right.</p></div>
+    <div class="pstep"><span class="pstep-n">04</span><div class="pstep-t">Launch &amp; Grow</div><p class="pstep-d">Your project goes live and we hand over everything you need — with post-launch support for Premium clients.</p></div>
+  </div>
+</section>
+
+<!-- ═══════════════ 5. PRICING ═══════════════ -->
+<section id="pricing">
+  <div class="pricing-top">
+    <span class="lbl">Transparent Pricing</span>
+    <h2 class="h2">Simple packages. <em>No surprises.</em></h2>
+    <p>Every package is fixed-price and clearly scoped. You know exactly what you're getting before you commit a single rand.</p>
+  </div>
+
+  <div class="pkg-grid">
+    <!-- Starter -->
+    <div class="pkg s">
+      <div class="ph"><span class="pl">Starter</span><span class="pn">Foundation</span><span class="pt">Get your brand identity established and looking professional from day one.</span><span class="pp">R800</span><span class="ppn">One-time · Perfect for new businesses</span></div>
+      <div class="pb">
+        <span class="pst">🎨 Brand Identity</span>
+        <ul class="pfl"><li><span class="ck">✦</span>Custom logo design (2 concepts, 2 revisions)</li><li><span class="ck">✦</span>Logo files in PNG, JPG &amp; SVG</li><li><span class="ck">✦</span>Brand colors, fonts &amp; style recommendation</li><li><span class="ck">✦</span>Brand mini style guide (1 page)</li></ul>
+        <div class="pdiv"></div>
+        <span class="pst">📋 Profiles &amp; Portfolio</span>
+        <ul class="pfl"><li><span class="ck">✦</span>Business profile setup (Facebook or Instagram)</li><li><span class="ck">✦</span>Branded profile graphics (cover &amp; profile image)</li><li><span class="ck">✦</span>Digital business portfolio design</li></ul>
+        <div class="pdiv"></div>
+        <div class="ptime">🕐&nbsp; Delivery: 4–6 business days</div>
+        <button class="pbtn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+      </div>
+    </div>
+
+    <!-- Growth -->
+    <div class="pkg g mid">
+      <div class="hot">Most Popular</div>
+      <div class="ph"><span class="pl">Growth</span><span class="pn">Accelerate</span><span class="pt">A complete online presence — website, hosting and Google visibility, all handled.</span><span class="pp">R2,500</span><span class="ppn">One-time · Includes domain &amp; hosting setup</span></div>
+      <div class="pb">
+        <span class="pst">🌐 Website Development</span>
+        <ul class="pfl"><li><span class="ck">✦</span>Full professional website (up to 5 pages)</li><li><span class="ck">✦</span>Mobile-responsive &amp; fast-loading design</li><li><span class="ck">✦</span>Contact form &amp; WhatsApp integration</li><li><span class="ck">✦</span>Domain registration &amp; connection</li><li><span class="ck">✦</span>Hosting setup &amp; full configuration</li></ul>
+        <div class="pdiv"></div>
+        <span class="pst">📍 Google Business Profile</span>
+        <ul class="pfl"><li><span class="ck">✦</span>Google Business Profile creation &amp; setup</li><li><span class="ck">✦</span>Full optimisation for local search visibility</li><li><span class="ck">✦</span>Business hours, categories &amp; photos</li><li><span class="ck">✦</span>Google Maps listing verified &amp; live</li></ul>
+        <div class="pdiv"></div>
+        <div class="ptime">🕐&nbsp; Delivery: 10–14 business days</div>
+        <button class="pbtn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+      </div>
+    </div>
+
+    <!-- Premium -->
+    <div class="pkg p">
+      <div class="ph"><span class="pl">Premium</span><span class="pn">Authority</span><span class="pt">The complete digital growth engine — ads, SEO, web &amp; email all working together.</span><span class="pp">R3,600</span><span class="ppn">One-time · Full-service digital setup</span></div>
+      <div class="pb">
+        <span class="pst">💻 Web Development</span>
+        <ul class="pfl"><li><span class="ck">✦</span>Full multi-page website (up to 8 pages)</li><li><span class="ck">✦</span>Mobile-responsive &amp; performance optimised</li><li><span class="ck">✦</span>Domain &amp; hosting setup included</li></ul>
+        <div class="pdiv"></div>
+        <span class="pst">🔍 SEO</span>
+        <ul class="pfl"><li><span class="ck">✦</span>Full on-page SEO optimisation</li><li><span class="ck">✦</span>Google Search Console &amp; Analytics setup</li><li><span class="ck">✦</span>Keyword research &amp; meta descriptions</li></ul>
+        <div class="pdiv"></div>
+        <span class="pst">📧 Email Marketing</span>
+        <ul class="pfl"><li><span class="ck">✦</span>Email platform setup (Mailchimp or MailerLite)</li><li><span class="ck">✦</span>Branded email template design</li><li><span class="ck">✦</span>Welcome email sequence (3 emails)</li></ul>
+        <div class="pdiv"></div>
+        <span class="pst">📣 Paid Ads</span>
+        <ul class="pfl"><li><span class="ck">✦</span>Meta or Google Ads campaign setup</li><li><span class="ck">✦</span>Audience targeting &amp; campaign strategy</li><li><span class="ck">✦</span>Ad creative guidance &amp; launch</li></ul>
+        <div class="pdiv"></div>
+        <div class="ptime">🕐&nbsp; Delivery: 21–30 business days</div>
+        <button class="pbtn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparison table -->
+  <div class="compare">
+    <table class="ctbl">
+      <thead>
+        <tr><th>Feature</th><th class="sh">Starter · R800</th><th class="gh">Growth · R2,500</th><th class="ph">Premium · R3,600</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Logo Design</td><td><span class="tick">✔</span> <span class="val">2 concepts</span></td><td><span class="cross">—</span></td><td><span class="cross">—</span></td></tr>
+        <tr><td>Brand Colors, Fonts &amp; Style Guide</td><td><span class="tick">✔</span></td><td><span class="cross">—</span></td><td><span class="cross">—</span></td></tr>
+        <tr><td>Business Profile Setup</td><td><span class="val">FB or IG</span></td><td><span class="cross">—</span></td><td><span class="cross">—</span></td></tr>
+        <tr><td>Digital Portfolio Design</td><td><span class="tick">✔</span></td><td><span class="cross">—</span></td><td><span class="cross">—</span></td></tr>
+        <tr><td>Website</td><td><span class="cross">—</span></td><td><span class="val">Up to 5 pages</span></td><td><span class="val">Up to 8 pages</span></td></tr>
+        <tr><td>Domain &amp; Hosting Setup</td><td><span class="cross">—</span></td><td><span class="tick">✔</span></td><td><span class="tick">✔</span></td></tr>
+        <tr><td>Google Business Profile</td><td><span class="cross">—</span></td><td><span class="tick">✔</span> <span class="val">Full optimisation</span></td><td><span class="cross">—</span></td></tr>
+        <tr><td>SEO Optimisation</td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="tick">✔</span></td></tr>
+        <tr><td>Email Marketing Setup</td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="tick">✔</span> <span class="val">3-email sequence</span></td></tr>
+        <tr><td>Paid Ads Setup</td><td><span class="cross">—</span></td><td><span class="cross">—</span></td><td><span class="tick">✔</span></td></tr>
+        <tr><td>Delivery Time</td><td><span class="val">4–6 days</span></td><td><span class="val">10–14 days</span></td><td><span class="val">21–30 days</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════ 6. TESTIMONIALS ═══════════════ -->
+<section id="testimonials">
+  <div class="testi-top">
+    <span class="lbl" style="color:var(--amber)">Client Stories</span>
+    <h2 class="h2 h2-light">What our <em>clients say</em></h2>
+  </div>
+  <div class="testi-grid">
+    <div class="tcard"><span class="tqm">"</span><div class="tstars">★★★★★</div><p class="ttxt">Pixora Studio completely transformed our online presence. Our website now looks professional and we're getting enquiries through Google for the first time ever.</p><div class="tauthor"><div class="tavatar">TM</div><div><div class="tname">Thabo Mokoena</div><div class="trole">Owner, Mokoena Auto Repairs</div></div></div></div>
+    <div class="tcard"><span class="tqm">"</span><div class="tstars">★★★★★</div><p class="ttxt">The Growth package was exactly what we needed. Our site was live in under 2 weeks, and the Google Business Profile alone brought in 3 new clients in the first month.</p><div class="tauthor"><div class="tavatar">SN</div><div><div class="tname">Sipho Ndlovu</div><div class="trole">Founder, Ndlovu Consulting</div></div></div></div>
+    <div class="tcard"><span class="tqm">"</span><div class="tstars">★★★★★</div><p class="ttxt">I was blown away by the quality for the price. My logo and branding look like they came from a big-city agency. I highly recommend Pixora Studio to any small business owner.</p><div class="tauthor"><div class="tavatar">LV</div><div><div class="tname">Lerato Vilakazi</div><div class="trole">Personal Brand Coach</div></div></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════ 7. LEAD MAGNET ═══════════════ -->
+<section id="lead">
+  <div>
+    <span class="lead-lbl">Free Resource</span>
+    <h2 class="lead-h">Get Your Free <em>Digital Presence Audit Checklist</em></h2>
+    <p class="lead-p">Not sure where your business stands online? Download our free 25-point checklist and find out exactly what's holding your digital presence back.</p>
+    <ul class="lead-list">
+      <li><span>✔</span>Website performance &amp; SEO audit points</li>
+      <li><span>✔</span>Social media &amp; Google profile checklist</li>
+      <li><span>✔</span>Lead generation &amp; conversion review</li>
+      <li><span>✔</span>Delivered instantly to your inbox</li>
+    </ul>
+  </div>
+  <div class="lead-form">
+    <input type="text" placeholder="Your full name">
+    <input type="email" placeholder="Your email address">
+    <button class="lead-submit">Download Free Checklist</button>
+    <p class="lead-note">No spam. Unsubscribe anytime. We respect your privacy.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ 8. FAQ ═══════════════ -->
+<section id="faq">
+  <div style="text-align:center;">
+    <span class="lbl">Common Questions</span>
+    <h2 class="h2">Frequently <em>Asked</em></h2>
+  </div>
+  <div class="faq-wrap">
+    <div class="fi"><button class="fq">Do your packages include domain &amp; hosting costs? <span class="fi-ico">+</span></button><div class="fa">The setup and configuration are included in the package price. Domain registration and hosting subscription fees are purchased by the client separately — we guide you on exactly what to buy and handle the full setup for you.</div></div>
+    <div class="fi"><button class="fq">How long does it take to get my website live? <span class="fi-ico">+</span></button><div class="fa">The Growth package (full website) typically takes 10–14 business days. The Premium package (SEO, email &amp; ads) runs 21–30 business days. Timelines depend on how quickly you provide content and feedback.</div></div>
+    <div class="fi"><button class="fq">I'm a complete beginner — can you still help me? <span class="fi-ico">+</span></button><div class="fa">Absolutely — that's exactly who we built Pixora Studio for. We guide you through every step, explain everything in plain language, and handle all the technical parts. No prior knowledge needed.</div></div>
+    <div class="fi"><button class="fq">Does the Paid Ads price include my ad budget? <span class="fi-ico">+</span></button><div class="fa">No — the R1,100 add-on (or Premium package) covers the full campaign setup, targeting and launch. Your actual ad spend is paid directly to Meta or Google by you, separately.</div></div>
+    <div class="fi"><button class="fq">How do payments work? <span class="fi-ico">+</span></button><div class="fa">We require a 50% deposit to kick off your project, with the remaining 50% due upon delivery. We accept EFT and major payment platforms.</div></div>
+    <div class="fi"><button class="fq">Can I start with Starter and upgrade later? <span class="fi-ico">+</span></button><div class="fa">Absolutely. Many clients start with Starter to get their brand in place, then move to Growth or Premium as their business grows. We always work with what you've already invested.</div></div>
+    <div class="fi"><button class="fq">Do you work with clients outside South Africa? <span class="fi-ico">+</span></button><div class="fa">Yes — we work with clients across Africa and internationally. All services are delivered digitally. Payments can be arranged in ZAR or USD depending on your location.</div></div>
+  </div>
+</section>
+
+<!-- ═══════════════ 9. BLOG ═══════════════ -->
+<section id="blog">
+  <div class="blog-top">
+    <div>
+      <span class="lbl">Resources &amp; Insights</span>
+      <h2 class="h2">Fresh from <em>the studio</em></h2>
+    </div>
+    <a href="pixora-studio-blog.html" class="btn btn-outline">View All Posts →</a>
+  </div>
+  <div class="blog-grid">
+    <div class="bcard" onclick="window.location='pixora-studio-blog.html#web-design'" style="cursor:pointer;"><div class="bimg i1">🌐</div><div class="bbody"><span class="bcat">Web Design</span><div class="btitle">5 Things Every Small Business Website Must Have in 2025</div><p class="bexc">Most small business websites are losing leads every day because they're missing these five essential elements. Here's how to fix that.</p><div class="bmeta"><span class="bdate">March 2025</span><span class="bread">5 min read →</span></div></div></div>
+    <div class="bcard" onclick="window.location='pixora-studio-blog.html#seo'" style="cursor:pointer;"><div class="bimg i2">🔍</div><div class="bbody"><span class="bcat">SEO</span><div class="btitle">How to Get Your Business on the First Page of Google (Without Paying for Ads)</div><p class="bexc">A beginner-friendly breakdown of on-page SEO — the free strategy that puts your business in front of people already searching for you.</p><div class="bmeta"><span class="bdate">February 2025</span><span class="bread">7 min read →</span></div></div></div>
+    <div class="bcard" onclick="window.location='pixora-studio-blog.html#paid-ads'" style="cursor:pointer;"><div class="bimg i3">📣</div><div class="bbody"><span class="bcat">Paid Ads</span><div class="btitle">Facebook Ads vs Google Ads: Which One Is Right for Your Business?</div><p class="bexc">Choosing the wrong ad platform can waste your budget fast. Here's a clear breakdown of which works best for different types of businesses.</p><div class="bmeta"><span class="bdate">January 2025</span><span class="bread">6 min read →</span></div></div></div>
+    <div class="bcard" onclick="window.location='pixora-studio-blog.html#email-marketing'" style="cursor:pointer;"><div class="bimg i4">📧</div><div class="bbody"><span class="bcat">Email Marketing</span><div class="btitle">Why Your Email List Is More Valuable Than Your Social Media Following</div><p class="bexc">Social platforms can take your audience away overnight. Your email list is the one channel you truly own — here's how to build it.</p><div class="bmeta"><span class="bdate">January 2025</span><span class="bread">5 min read →</span></div></div></div>
+    <div class="bcard" onclick="window.location='pixora-studio-blog.html#branding'" style="cursor:pointer;"><div class="bimg i5">🎨</div><div class="bbody"><span class="bcat">Branding</span><div class="btitle">Why Your Logo Matters More Than You Think</div><p class="bexc">A bad logo doesn't just look unprofessional — it actively costs you clients. Here's what makes a great logo and how to brief a designer.</p><div class="bmeta"><span class="bdate">Dec 2024</span><span class="bread">4 min read →</span></div></div></div>
+    <div class="bcard" onclick="window.location='pixora-studio-blog.html#local-seo'" style="cursor:pointer;"><div class="bimg i6">📍</div><div class="bbody"><span class="bcat">Local SEO</span><div class="btitle">Google Business Profile: The Free Tool That Gets Local Businesses Found</div><p class="bexc">If you're a local business without a Google Business Profile, you're invisible to the people closest to you. Fix that today.</p><div class="bmeta"><span class="bdate">Nov 2024</span><span class="bread">5 min read →</span></div></div></div>
+  </div>
+
+  <!-- Newsletter -->
+  <div class="nl-bar">
+    <div><h3 class="nl-h">Get digital tips in your inbox</h3><p class="nl-p">Weekly marketing insights, free resources and exclusive tips — no spam, ever.</p></div>
+    <div class="nl-form">
+      <input type="email" placeholder="Your email address">
+      <button>Subscribe →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 10. CONTACT ═══════════════ -->
+<section id="contact">
+  <div class="ci">
+    <span class="lbl">Get In Touch</span>
+    <h2 class="h2" style="margin-bottom:14px;">Let's talk about your <em>business</em></h2>
+    <p>Book a free 30-minute discovery call, send us a message, or reach us on WhatsApp. We typically respond within a few hours.</p>
+    <div class="cmethods">
+      <div class="cm"><div class="cm-ico ph">📞</div><div><span class="cm-lbl">Phone</span><a href="tel:+27630007335" class="cm-val">+27 63 000 7335</a><span class="cm-note">Mon–Fri, 8am–6pm SAST</span></div></div>
+      <div class="cm"><div class="cm-ico wa">💬</div><div><span class="cm-lbl">WhatsApp</span><a href="https://wa.me/27630007335" class="cm-val">+27 63 000 7335</a><span class="cm-note">Quickest way to reach us</span></div></div>
+      <div class="cm"><div class="cm-ico em">📧</div><div><span class="cm-lbl">Email</span><a href="/cdn-cgi/l/email-protection#cda5a8a1a1a28dbda4b5a2bfacbeb9b8a9a4a2e3aea2e3b7ac" class="cm-val"><span class="__cf_email__" data-cfemail="ea828f868685aa9a839285988b999e9f8e8385c48985c4908b">[email&#160;protected]</span></a><span class="cm-note">We reply within 24 hours</span></div></div>
+    </div>
+    <a href="https://wa.me/27630007335" class="wa-btn" target="_blank">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Chat on WhatsApp
+    </a>
+  </div>
+
+  <div class="cform-box">
+    <div class="cform-t">Send Us a Message</div>
+    <p class="cform-s">Fill in the form and we'll get back to you within 24 hours.</p>
+    <form onsubmit="return false;">
+      <div class="frow">
+        <div class="fg"><label class="flbl">First Name</label><input type="text" class="fi2" placeholder="Your first name"></div>
+        <div class="fg"><label class="flbl">Last Name</label><input type="text" class="fi2" placeholder="Your last name"></div>
+      </div>
+      <div class="frow">
+        <div class="fg"><label class="flbl">Email</label><input type="email" class="fi2" placeholder="your@email.com"></div>
+        <div class="fg"><label class="flbl">Phone</label><input type="tel" class="fi2" placeholder="+27 xx xxx xxxx"></div>
+      </div>
+      <div class="fg full"><label class="flbl">Service Interested In</label>
+        <select class="fsel">
+          <option value="">Select a service or package</option>
+          <option>Starter Package — R800</option>
+          <option>Growth Package — R2,500</option>
+          <option>Premium Package — R3,600</option>
+          <option>Paid Ads Add-On — R1,100</option>
+          <option>Email Marketing Add-On — R700</option>
+          <option>Portfolio/Profile Design — R300</option>
+          <option>Not Sure — Need Advice</option>
+        </select>
+      </div>
+      <div class="fg full"><label class="flbl">Tell Us About Your Project</label><textarea class="fta" placeholder="Briefly describe your business, goals and any specific requirements..."></textarea></div>
+      <button type="submit" class="fsub">Send Message →</button>
+      <p class="fpri">By submitting you agree to our <a href="#legal">Privacy Policy</a>. We never share your data.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ═══════════════ CTA BAND ═══════════════ -->
+<div class="cta-band">
+  <h2>Ready to grow your<br><strong>digital presence?</strong></h2>
+  <div class="cta-btns">
+    <a href="#contact" class="btn btn-dark btn-lg">Book a Free Call</a>
+    <a href="#pricing" class="btn btn-ghost-dark btn-lg">View Packages</a>
+  </div>
+</div>
+
+<!-- ═══════════════ 11. LEGAL ═══════════════ -->
+<section id="legal">
+  <span class="lbl" style="color:var(--amber)">Legal</span>
+  <h2 class="h2 h2-light" style="margin-bottom:4px;">Our <em>Policies</em></h2>
+  <p style="font-size:13px;font-weight:300;color:var(--tan);">Summary of our key legal policies. Full details available on request.</p>
+  <div class="legal-grid">
+    <div class="lcard">
+      <h3>Privacy Policy</h3>
+      <p>We collect only the information needed to deliver our services. We never sell your personal data to third parties. You can request access to or deletion of your data at any time by emailing <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="731b161f1f1c33031a0b1c0112000706171a1c5d101c5d0912">[email&#160;protected]</a>.</p>
+    </div>
+    <div class="lcard">
+      <h3>Terms of Service</h3>
+      <p>All projects require a 50% deposit before work begins. Deliverables are transferred to the client upon final payment. Additional revisions beyond the agreed scope are quoted separately. Governed by South African law.</p>
+    </div>
+    <div class="lcard">
+      <h3>Cookie Policy</h3>
+      <p>We use essential cookies for site functionality and analytics cookies (Google Analytics) to understand visitor behaviour. You may decline non-essential cookies via the banner. Your choice is stored locally.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="ft-top">
+    <div>
+      <div class="flogo">PIX<span>O</span>RA <span class="flogo-sub">STUDIO</span></div>
+      <p class="ftagline">Where vision meets digital.</p>
+      <div class="fsocials">
+        <a href="#" class="fsoc">FB</a>
+        <a href="#" class="fsoc">IG</a>
+        <a href="#" class="fsoc">LI</a>
+      </div>
+    </div>
+    <div class="fcols">
+      <div class="fcol">
+        <span class="fct">Services</span>
+        <a href="#services">Web Development</a>
+        <a href="#services">SEO Optimisation</a>
+        <a href="#services">Paid Ads</a>
+        <a href="#services">Email Marketing</a>
+        <a href="#services">Logo &amp; Branding</a>
+      </div>
+      <div class="fcol">
+        <span class="fct">Navigate</span>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#pricing">Pricing</a>
+        <a href="pixora-studio-blog.html">Blog</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="fcol">
+        <span class="fct">Legal</span>
+        <a href="#legal">Privacy Policy</a>
+        <a href="#legal">Terms of Service</a>
+        <a href="#legal">Cookie Policy</a>
+      </div>
+      <div class="fcol">
+        <span class="fct">Contact</span>
+        <a href="tel:+27630007335">+27 63 000 7335</a>
+        <a href="/cdn-cgi/l/email-protection#fc9499909093bc8c9584938e9d8f8889989593d29f93d2869d"><span class="__cf_email__" data-cfemail="264e434a4a4966564f5e495447555253424f49084549085c47">[email&#160;protected]</span></a>
+        <a href="https://wa.me/27630007335">WhatsApp Us</a>
+        <a href="#contact">Book a Call</a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <p>© 2025 Pixora Studio. All rights reserved.</p>
+    <p>Crafted with intention in South Africa 🇿🇦</p>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/27630007335" class="wa-float" target="_blank" aria-label="Chat on WhatsApp">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- Cookie Banner -->
+<div class="cookie" id="cookieBanner">
+  <p>We use cookies to improve your experience. See our <a href="#legal">Cookie Policy</a>.</p>
+  <div class="cookie-btns">
+    <button class="btn btn-ghost" style="font-size:10px;padding:8px 16px;" onclick="dismissCookie(false)">Decline</button>
+    <button class="btn btn-amber" style="font-size:10px;padding:8px 16px;" onclick="dismissCookie(true)">Accept All</button>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ── NAV scroll ──
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+  // Active link
+  const sections = ['home','about','services','process','pricing','testimonials','lead','faq','blog','contact','legal'];
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if(el && window.scrollY >= el.offsetTop - 120) current = id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+
+// ── Mobile nav ──
+function closeMob(){
+  document.getElementById('mobNav').classList.remove('show');
+}
+document.getElementById('ham').addEventListener('click', () => document.getElementById('mobNav').classList.add('show'));
+document.getElementById('mobClose').addEventListener('click', closeMob);
+
+// ── FAQ accordion ──
+document.querySelectorAll('.fq').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.fi');
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.fi').forEach(i => i.classList.remove('open'));
+    if(!open) item.classList.add('open');
+  });
+});
+
+// ── Cookie banner ──
+function dismissCookie(accepted){
+  if(accepted) localStorage.setItem('cookiesAccepted','1');
+  document.getElementById('cookieBanner').style.display = 'none';
+}
+if(localStorage.getItem('cookiesAccepted')){
+  document.getElementById('cookieBanner').style.display = 'none';
+}
+
+// ── Smooth scroll for anchor links ──
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); closeMob(); }
+  });
+});
+
+// ── Scroll reveal ──
+const revealObserver = new IntersectionObse

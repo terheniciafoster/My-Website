@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Pixora Studio | Digital Marketing Insights & Tips</title>
+<meta name="description" content="Digital marketing insights, web design tips, SEO strategies and branding advice from Pixora Studio. Helping small businesses grow online.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --cream:#F5F0E8;--sand:#E8DCC8;--tan:#C9AD8A;--amber:#B8895A;
+  --rust:#9B6240;--bark:#6B4226;--forest:#3D5A45;--sage:#7A9E82;
+  --mist:#B8CCBA;--charcoal:#2C2420;--warm:#FAF7F2;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;color:var(--charcoal);background:var(--cream);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;}
+button{font-family:'Jost',sans-serif;}
+
+/* ── TYPOGRAPHY ── */
+.lbl{font-size:9px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:10px;}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--tan),transparent);}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 30px;border-radius:3px;font-size:10px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;transition:all .2s;cursor:pointer;border:none;white-space:nowrap;}
+.btn-amber{background:var(--amber);color:#fff;} .btn-amber:hover{background:var(--rust);}
+.btn-outline{background:transparent;border:1px solid var(--amber);color:var(--amber);} .btn-outline:hover{background:var(--amber);color:#fff;}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,.3);color:var(--warm);} .btn-ghost:hover{border-color:var(--warm);}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:22px 56px;transition:all .35s;background:rgba(44,36,32,.97);backdrop-filter:blur(16px);box-shadow:0 2px 24px rgba(0,0,0,.25);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:21px;letter-spacing:6px;color:var(--warm);text-transform:uppercase;}
+.nav-logo span{color:var(--amber);}
+.nav-logo small{font-size:13px;letter-spacing:4px;color:var(--tan);}
+.nav-links{display:flex;gap:32px;}
+.nav-links a{font-size:10px;font-weight:400;letter-spacing:2.5px;text-transform:uppercase;color:rgba(250,247,242,.65);transition:color .2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--amber);transition:width .25s;}
+.nav-links a:hover,.nav-links a.active{color:var(--warm);}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-btns{display:flex;gap:10px;}
+.hamburger{display:none;background:none;border:none;color:var(--warm);font-size:26px;cursor:pointer;padding:2px;}
+.mob-nav{display:none;position:fixed;inset:0;background:var(--charcoal);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:30px;}
+.mob-nav.show{display:flex;}
+.mob-nav a{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--warm);letter-spacing:3px;transition:color .2s;}
+.mob-nav a:hover{color:var(--amber);}
+.mob-close{position:absolute;top:22px;right:28px;background:none;border:none;color:var(--tan);font-size:30px;cursor:pointer;}
+
+/* ── BLOG HERO ── */
+.blog-hero{background:var(--charcoal);padding:80px 64px 80px;position:relative;overflow:hidden;}
+.bh-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(184,137,90,.1),transparent 65%);top:-200px;right:-100px;pointer-events:none;}
+.bh-grain{position:absolute;inset:0;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");pointer-events:none;}
+.blog-hero-inner{position:relative;z-index:2;max-width:760px;}
+.blog-hero-eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:9px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--amber);margin-bottom:24px;}
+.blog-hero-eyebrow::before{content:'';width:36px;height:1px;background:var(--amber);}
+.blog-hero h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(38px,6vw,74px);color:var(--warm);line-height:1.05;letter-spacing:-1px;margin-bottom:20px;}
+.blog-hero h1 em{color:var(--amber);font-style:italic;}
+.blog-hero p{font-size:15px;font-weight:300;color:var(--tan);max-width:480px;line-height:1.9;}
+
+/* ── FILTER TABS ── */
+.filter-bar{background:var(--sand);padding:20px 64px;display:flex;gap:8px;flex-wrap:wrap;border-bottom:1px solid rgba(184,137,90,.15);position:sticky;top:0;z-index:100;}
+.ftab{padding:7px 18px;border-radius:30px;font-size:9px;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border:1px solid transparent;transition:all .2s;background:transparent;color:var(--bark);}
+.ftab:hover{border-color:var(--amber);color:var(--amber);}
+.ftab.active{background:var(--amber);color:#fff;border-color:var(--amber);}
+
+/* ── ARTICLE LIST ── */
+.blog-body{padding:72px 64px;max-width:1400px;margin:0 auto;}
+.blog-grid-main{display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;}
+
+.bcard{background:#fff;border-radius:6px;overflow:hidden;box-shadow:0 4px 16px rgba(44,36,32,.06);transition:transform .3s,box-shadow .3s;cursor:pointer;}
+.bcard:hover{transform:translateY(-6px);box-shadow:0 14px 40px rgba(44,36,32,.12);}
+.bcard.featured{grid-column:1/-1;display:grid;grid-template-columns:1.1fr 1fr;}
+.bimg{height:190px;display:flex;align-items:center;justify-content:center;font-size:52px;}
+.bcard.featured .bimg{height:100%;min-height:300px;}
+.bimg.i1{background:var(--charcoal);}
+.bimg.i2{background:var(--forest);}
+.bimg.i3{background:var(--rust);}
+.bimg.i4{background:var(--bark);}
+.bimg.i5{background:var(--amber);}
+.bimg.i6{background:#2C2420;}
+.bbody{padding:28px 24px;}
+.bcard.featured .bbody{padding:48px 44px;display:flex;flex-direction:column;justify-content:center;}
+.bcat{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);font-weight:500;display:block;margin-bottom:8px;}
+.bfeat-badge{display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;}
+.bfeat-badge .bcat{margin-bottom:0;}
+.featured-pill{font-size:7px;font-weight:600;letter-spacing:2px;text-transform:uppercase;background:var(--amber);color:#fff;padding:3px 10px;border-radius:20px;}
+.btitle{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:var(--charcoal);line-height:1.3;margin-bottom:10px;}
+.bcard.featured .btitle{font-size:28px;margin-bottom:14px;}
+.bexc{font-size:12px;font-weight:300;color:#777;line-height:1.85;margin-bottom:16px;}
+.bmeta{display:flex;justify-content:space-between;align-items:center;}
+.bdate{font-size:9px;color:#bbb;font-weight:300;}
+.bread{font-size:9px;color:var(--amber);font-weight:500;letter-spacing:1px;cursor:pointer;transition:color .2s;}
+.bread:hover{color:var(--rust);}
+.bread-btn{background:none;border:none;font-family:'Jost',sans-serif;font-size:9px;color:var(--amber);font-weight:500;letter-spacing:1px;cursor:pointer;transition:color .2s;padding:0;}
+.bread-btn:hover{color:var(--rust);}
+
+/* ── ARTICLE OVERLAY ── */
+.article-overlay{position:fixed;inset:0;z-index:2000;overflow-y:auto;display:none;background:var(--warm);}
+.article-overlay.open{display:block;animation:fadeOverlay .3s ease;}
+@keyframes fadeOverlay{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+.art-nav{position:sticky;top:0;z-index:10;background:rgba(44,36,32,.97);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:space-between;padding:18px 64px;}
+.art-back{display:flex;align-items:center;gap:10px;font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--tan);cursor:pointer;background:none;border:none;font-family:'Jost',sans-serif;transition:color .2s;}
+.art-back:hover{color:var(--amber);}
+.art-back svg{width:16px;height:16px;}
+.art-nav-logo{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:18px;letter-spacing:5px;color:var(--warm);text-transform:uppercase;}
+.art-nav-logo span{color:var(--amber);}
+
+.art-hero{padding:80px 64px 60px;max-width:900px;margin:0 auto;}
+.art-cat{font-size:9px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:18px;}
+.art-h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(34px,5vw,58px);color:var(--charcoal);line-height:1.1;margin-bottom:22px;}
+.art-meta{display:flex;align-items:center;gap:24px;font-size:10px;font-weight:300;color:#aaa;padding-bottom:28px;border-bottom:1px solid var(--sand);}
+.art-meta span{display:flex;align-items:center;gap:6px;}
+
+.art-body{max-width:780px;margin:0 auto;padding:0 64px 80px;}
+.art-body p{font-size:15px;font-weight:300;color:#555;line-height:1.95;margin-bottom:24px;}
+.art-body h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:32px;color:var(--charcoal);margin:48px 0 18px;line-height:1.2;}
+.art-body h2 em{color:var(--rust);font-style:italic;}
+.art-body h3{font-family:'Jost',sans-serif;font-weight:500;font-size:15px;color:var(--charcoal);margin:32px 0 12px;letter-spacing:.5px;}
+.art-body ul,.art-body ol{margin:0 0 24px 0;padding-left:24px;}
+.art-body li{font-size:15px;font-weight:300;color:#555;line-height:1.9;margin-bottom:8px;}
+.art-body blockquote{border-left:3px solid var(--amber);padding:20px 28px;background:var(--sand);border-radius:0 4px 4px 0;margin:32px 0;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;font-style:italic;color:var(--bark);line-height:1.5;}
+.art-body .callout{background:var(--charcoal);border-radius:6px;padding:28px 32px;margin:32px 0;}
+.art-body .callout p{color:var(--tan);margin-bottom:0;}
+.art-body .callout strong{color:var(--amber);}
+.art-body .tip{background:rgba(61,90,69,.08);border:1px solid rgba(61,90,69,.2);border-radius:4px;padding:20px 24px;margin:24px 0;}
+.art-body .tip p{color:#444;margin-bottom:0;font-size:14px;}
+.art-body .tip strong{color:var(--forest);}
+.art-cta{background:var(--charcoal);padding:60px 64px;margin:0;text-align:center;}
+.art-cta h3{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:36px;color:var(--warm);margin-bottom:12px;}
+.art-cta h3 em{color:var(--amber);font-style:italic;}
+.art-cta p{font-size:13px;font-weight:300;color:var(--tan);margin-bottom:28px;}
+.art-cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+/* ── RELATED ARTICLES ── */
+.related-section{padding:64px;background:var(--sand);}
+.related-section h3{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px;color:var(--charcoal);margin-bottom:32px;}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.rcard{background:#fff;border-radius:6px;overflow:hidden;cursor:pointer;transition:transform .2s,box-shadow .2s;}
+.rcard:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(44,36,32,.1);}
+.rcard .bimg{height:120px;font-size:36px;}
+.rcard .bbody{padding:18px;}
+.rcard .btitle{font-size:16px;}
+
+/* ── NEWSLETTER BAR ── */
+.nl-bar{background:var(--charcoal);border-radius:6px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:52px;}
+.nl-h{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28px;color:var(--warm);margin-bottom:6px;}
+.nl-p{font-size:12px;font-weight:300;color:var(--tan);line-height:1.7;}
+.nl-form{display:flex;gap:10px;}
+.nl-form input{flex:1;padding:13px 16px;border:1px solid rgba(255,255,255,.12);border-radius:3px;background:rgba(255,255,255,.06);font-family:'Jost',sans-serif;font-size:12px;font-weight:300;color:#fff;outline:none;min-width:0;}
+.nl-form input::placeholder{color:rgba(255,255,255,.25);}
+.nl-form button{padding:13px 22px;background:var(--amber);color:#fff;border:none;border-radius:3px;font-size:9px;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:background .2s;}
+.nl-form button:hover{background:var(--rust);}
+
+/* ── FOOTER ── */
+footer{background:var(--charcoal);border-top:1px solid rgba(255,255,255,.06);}
+.ft-top{padding:60px 64px 44px;display:grid;grid-template-columns:240px 1fr;gap:72px;}
+.flogo{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:21px;letter-spacing:5px;color:var(--warm);text-transform:uppercase;margin-bottom:8px;}
+.flogo span{color:var(--amber);}
+.flogo-sub{font-size:13px;letter-spacing:4px;color:var(--tan);}
+.ftagline{font-size:12px;font-style:italic;color:var(--tan);font-family:'Cormorant Garamond',serif;margin-bottom:20px;}
+.fsocials{display:flex;gap:8px;}
+.fsoc{width:34px;height:34px;border:1px solid rgba(255,255,255,.14);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;color:var(--tan);transition:all .2s;}
+.fsoc:hover{border-color:var(--amber);color:var(--amber);}
+.fcols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.fcol{display:flex;flex-direction:column;gap:9px;}
+.fct{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--amber);margin-bottom:4px;font-weight:500;}
+.fcol a{font-size:12px;font-weight:300;color:var(--tan);transition:color .2s;}
+.fcol a:hover{color:var(--warm);}
+.ft-bot{border-top:1px solid rgba(255,255,255,.06);padding:16px 64px;display:flex;justify-content:space-between;align-items:center;}
+.ft-bot p{font-size:10px;font-weight:300;color:rgba(201,173,138,.4);}
+
+/* ── WA FLOAT ── */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:900;width:54px;height:54px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:transform .2s;}
+.wa-float:hover{transform:scale(1.1);}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.in{opacity:1;transform:none;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  nav{padding:16px 32px;}
+  .blog-hero{padding:120px 40px 60px;}
+  .filter-bar{padding:16px 40px;}
+  .blog-body{padding:56px 40px;}
+  .blog-grid-main{grid-template-columns:1fr 1fr;}
+  .bcard.featured{grid-column:1/-1;}
+  .art-nav{padding:16px 32px;}
+  .art-hero{padding:60px 40px 44px;}
+  .art-body{padding:0 40px 60px;}
+  .related-section{padding:48px 40px;}
+  .related-grid{grid-template-columns:1fr 1fr;}
+  .ft-top{padding:48px 40px 36px;grid-template-columns:1fr;gap:36px;}
+  .ft-bot{padding:14px 40px;}
+  .fcols{grid-template-columns:repeat(2,1fr);}
+  .nl-bar{grid-template-columns:1fr;gap:20px;padding:36px;}
+}
+@media(max-width:768px){
+  nav{padding:16px 20px;}
+  .nav-links,.nav-btns{display:none;}
+  .hamburger{display:block;}
+  .blog-hero{padding:110px 20px 52px;}
+  .filter-bar{padding:14px 20px;}
+  .blog-body{padding:40px 20px;}
+  .blog-grid-main{grid-template-columns:1fr;}
+  .bcard.featured{grid-template-columns:1fr;}
+  .bcard.featured .bimg{min-height:200px;}
+  .bcard.featured .bbody{padding:28px 24px;}
+  .art-nav{padding:14px 20px;}
+  .art-hero{padding:50px 20px 36px;}
+  .art-body{padding:0 20px 48px;}
+  .art-cta{padding:48px 20px;}
+  .related-section{padding:40px 20px;}
+  .related-grid{grid-template-columns:1fr;}
+  .ft-top{padding:40px 20px 28px;}
+  .fcols{grid-template-columns:repeat(2,1fr);gap:20px;}
+  .ft-bot{flex-direction:column;gap:6px;text-align:center;padding:14px 20px;}
+  .nl-bar{padding:28px 20px;}
+  .nl-form{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav id="nav">
+  <a href="pixora-studio-complete.html" class="nav-logo">PIX<span>O</span>RA <small>STUDIO</small></a>
+  <div class="nav-links">
+    <a href="pixora-studio-complete.html#home">Home</a>
+    <a href="pixora-studio-complete.html#services">Services</a>
+    <a href="pixora-studio-complete.html#about">About</a>
+    <a href="pixora-studio-complete.html#pricing">Pricing</a>
+    <a href="pixora-studio-blog.html" class="active">Blog</a>
+    <a href="pixora-studio-complete.html#contact">Contact</a>
+  </div>
+  <div class="nav-btns">
+    <a href="pixora-studio-complete.html#contact" class="btn btn-amber" style="font-size:10px;padding:11px 22px;">Book a Call</a>
+  </div>
+  <button class="hamburger" id="ham">☰</button>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mob-nav" id="mobNav">
+  <button class="mob-close" id="mobClose">✕</button>
+  <a href="pixora-studio-complete.html#home" onclick="closeMob()">Home</a>
+  <a href="pixora-studio-complete.html#services" onclick="closeMob()">Services</a>
+  <a href="pixora-studio-complete.html#about" onclick="closeMob()">About</a>
+  <a href="pixora-studio-complete.html#pricing" onclick="closeMob()">Pricing</a>
+  <a href="pixora-studio-blog.html" onclick="closeMob()">Blog</a>
+  <a href="pixora-studio-complete.html#contact" onclick="closeMob()">Contact</a>
+</div>
+
+<!-- ═══════════════ BLOG HERO ═══════════════ -->
+<section class="blog-hero">
+  <div class="bh-glow"></div>
+  <div class="bh-grain"></div>
+  <div class="blog-hero-inner">
+    <div class="blog-hero-eyebrow">Resources &amp; Insights</div>
+    <h1>Fresh from <em>the studio</em></h1>
+    <p>Practical digital marketing guides, web design tips, and growth strategies — written for small businesses who want to grow online without the jargon.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ FILTER BAR ═══════════════ -->
+<div class="filter-bar" id="filterBar">
+  <button class="ftab active" onclick="filterPosts('all',this)">All Posts</button>
+  <button class="ftab" onclick="filterPosts('web-design',this)">Web Design</button>
+  <button class="ftab" onclick="filterPosts('seo',this)">SEO</button>
+  <button class="ftab" onclick="filterPosts('paid-ads',this)">Paid Ads</button>
+  <button class="ftab" onclick="filterPosts('email-marketing',this)">Email Marketing</button>
+  <button class="ftab" onclick="filterPosts('branding',this)">Branding</button>
+  <button class="ftab" onclick="filterPosts('local-seo',this)">Local SEO</button>
+</div>
+
+<!-- ═══════════════ BLOG GRID ═══════════════ -->
+<div class="blog-body">
+  <div class="blog-grid-main" id="blogGrid">
+
+    <!-- Article 1 — Featured -->
+    <div class="bcard featured reveal" data-cat="web-design" onclick="openArticle('web-design')">
+      <div class="bimg i1">🌐</div>
+      <div class="bbody">
+        <div class="bfeat-badge"><span class="bcat">Web Design</span><span class="featured-pill">Featured</span></div>
+        <div class="btitle">5 Things Every Small Business Website Must Have in 2025</div>
+        <p class="bexc">Most small business websites are losing leads every day because they're missing these five essential elements. Is yours one of them? Here's exactly what to fix and why it matters more than ever.</p>
+        <div class="bmeta"><span class="bdate">March 2025 · 5 min read</span><button class="bread-btn">Read Article →</button></div>
+      </div>
+    </div>
+
+    <!-- Article 2 -->
+    <div class="bcard reveal" data-cat="seo" onclick="openArticle('seo')">
+      <div class="bimg i2">🔍</div>
+      <div class="bbody">
+        <span class="bcat">SEO</span>
+        <div class="btitle">How to Get Your Business on the First Page of Google (Without Paying for Ads)</div>
+        <p class="bexc">A beginner-friendly breakdown of on-page SEO — the free strategy that puts your business in front of people already searching for you.</p>
+        <div class="bmeta"><span class="bdate">Feb 2025 · 7 min read</span><button class="bread-btn">Read Article →</button></div>
+      </div>
+    </div>
+
+    <!-- Article 3 -->
+    <div class="bcard reveal" data-cat="paid-ads" onclick="openArticle('paid-ads')">
+      <div class="bimg i3">📣</div>
+      <div class="bbody">
+        <span class="bcat">Paid Ads</span>
+        <div class="btitle">Facebook Ads vs Google Ads: Which One Is Right for Your Business?</div>
+        <p class="bexc">Choosing the wrong ad platform can waste your budget fast. Here's a clear breakdown of which works best for different types of businesses.</p>
+        <div class="bmeta"><span class="bdate">Jan 2025 · 6 min read</span><button class="bread-btn">Read Article →</button></div>
+      </div>
+    </div>
+
+    <!-- Article 4 -->
+    <div class="bcard reveal" data-cat="email-marketing" onclick="openArticle('email-marketing')">
+      <div class="bimg i4">📧</div>
+      <div class="bbody">
+        <span class="bcat">Email Marketing</span>
+        <div class="btitle">Why Your Email List Is More Valuable Than Your Social Media Following</div>
+        <p class="bexc">Social platforms can take your audience away overnight. Your email list is the one channel you truly own — here's how to build it properly.</p>
+        <div class="bmeta"><span class="bdate">Jan 2025 · 5 min read</span><button class="bread-btn">Read Article →</button></div>
+      </div>
+    </div>
+
+    <!-- Article 5 -->
+    <div class="bcard reveal" data-cat="branding" onclick="openArticle('branding')">
+      <div class="bimg i5">🎨</div>
+      <div class="bbody">
+        <span class="bcat">Branding</span>
+        <div class="btitle">Why Your Logo Matters More Than You Think</div>
+        <p class="bexc">A bad logo doesn't just look unprofessional — it actively costs you clients. Here's what makes a great logo and how to brief a designer properly.</p>
+        <div class="bmeta"><span class="bdate">Dec 2024 · 4 min read</span><button class="bread-btn">Read Article →</button></div>
+      </div>
+    </div>
+
+    <!-- Article 6 -->
+    <div class="bcard reveal" data-cat="local-seo" onclick="openArticle('local-seo')">
+      <div class="bimg i6">📍</div>
+      <div class="bbody">
+        <span class="bcat">Local SEO</span>
+        <div class="btitle">Google Business Profile: The Free Tool That Gets Local Businesses Found</div>
+        <p class="bexc">If you're a local business without a Google Business Profile, you're invisible to the people closest to you. Here's how to fix that today.</p>
+        <div class="bmeta"><span class="bdate">Nov 2024 · 5 min read</span><button class="bread-btn">Read Article →</button></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Newsletter -->
+  <div class="nl-bar">
+    <div>
+      <h3 class="nl-h">Get digital tips in your inbox</h3>
+      <p class="nl-p">Weekly marketing insights, free resources and exclusive tips — no spam, ever.</p>
+    </div>
+    <div class="nl-form">
+      <input type="email" placeholder="Your email address">
+      <button>Subscribe →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="ft-top">
+    <div>
+      <div class="flogo">PIX<span>O</span>RA <span class="flogo-sub">STUDIO</span></div>
+      <p class="ftagline">Where vision meets digital.</p>
+      <div class="fsocials">
+        <a href="#" class="fsoc">FB</a>
+        <a href="#" class="fsoc">IG</a>
+        <a href="#" class="fsoc">LI</a>
+      </div>
+    </div>
+    <div class="fcols">
+      <div class="fcol">
+        <span class="fct">Services</span>
+        <a href="pixora-studio-complete.html#services">Web Development</a>
+        <a href="pixora-studio-complete.html#services">SEO Optimisation</a>
+        <a href="pixora-studio-complete.html#services">Paid Ads</a>
+        <a href="pixora-studio-complete.html#services">Email Marketing</a>
+        <a href="pixora-studio-complete.html#services">Logo &amp; Branding</a>
+      </div>
+      <div class="fcol">
+        <span class="fct">Navigate</span>
+        <a href="pixora-studio-complete.html#home">Home</a>
+        <a href="pixora-studio-complete.html#about">About</a>
+        <a href="pixora-studio-complete.html#pricing">Pricing</a>
+        <a href="pixora-studio-blog.html">Blog</a>
+        <a href="pixora-studio-complete.html#contact">Contact</a>
+      </div>
+      <div class="fcol">
+        <span class="fct">Legal</span>
+        <a href="pixora-studio-complete.html#legal">Privacy Policy</a>
+        <a href="pixora-studio-complete.html#legal">Terms of Service</a>
+        <a href="pixora-studio-complete.html#legal">Cookie Policy</a>
+      </div>
+      <div class="fcol">
+        <span class="fct">Contact</span>
+        <a href="tel:+27630007335">+27 63 000 7335</a>
+        <a href="mailto:hello@pixorastudio.co.za">hello@pixorastudio.co.za</a>
+        <a href="https://wa.me/27630007335">WhatsApp Us</a>
+        <a href="pixora-studio-complete.html#contact">Book a Call</a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <p>© 2025 Pixora Studio. All rights reserved.</p>
+    <p>Crafted with intention in South Africa 🇿🇦</p>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/27630007335" class="wa-float" target="_blank" aria-label="Chat on WhatsApp">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ═══════════════ ARTICLE OVERLAYS ═══════════════ -->
+
+<!-- ARTICLE: Web Design -->
+<div class="article-overlay" id="art-web-design">
+  <div class="art-nav">
+    <button class="art-back" onclick="closeArticle()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Blog
+    </button>
+    <div class="art-nav-logo">PIX<span>O</span>RA <small style="font-size:11px;letter-spacing:3px;color:var(--tan);">STUDIO</small></div>
+    <a href="pixora-studio-complete.html#contact" class="btn btn-amber" style="font-size:10px;padding:10px 20px;">Book a Call</a>
+  </div>
+  <div class="art-hero">
+    <span class="art-cat">Web Design · March 2025 · 5 min read</span>
+    <h1 class="art-h1">5 Things Every Small Business Website Must Have in 2025</h1>
+    <div class="art-meta">
+      <span>✍️ Pixora Studio</span>
+      <span>📅 March 2025</span>
+      <span>⏱ 5 min read</span>
+    </div>
+  </div>
+  <div class="art-body">
+    <p>Your website is your most powerful sales tool — or it should be. The problem is most small business websites are quietly losing leads every single day because of a handful of fixable mistakes. After reviewing hundreds of small business sites, we've identified the five elements that separate websites that convert visitors into customers from the ones that don't.</p>
+
+    <p>If your site is missing even one of these, you're leaving money on the table. Let's fix that.</p>
+
+    <h2>1. A Clear, Compelling <em>Value Proposition</em> Above the Fold</h2>
+    <p>The "fold" is the part of the screen visitors see before they scroll. Within three seconds of landing on your site, a visitor should know: what you do, who you serve, and why they should choose you over anyone else. This is your value proposition, and it needs to be the very first thing they read.</p>
+    <p>Most small business websites fail here by opening with vague welcome messages like "Welcome to our website" or generic slogans like "Excellence in everything we do." These say nothing. Instead, try something specific: "Affordable website design for Cape Town small businesses — live in 10 days."</p>
+
+    <div class="tip"><p><strong>💡 Quick Fix:</strong> Read your homepage headline out loud. If it could apply to any business in any industry, rewrite it until it's specific to exactly what you do and who you serve.</p></div>
+
+    <h2>2. A Mobile-First <em>Design</em> That Works Flawlessly</h2>
+    <p>Over 70% of South African internet users access websites from their phones. If your website isn't optimised for mobile, you're frustrating the majority of your visitors the moment they arrive. Mobile-first doesn't just mean the site "works" on mobile — it means the entire experience is designed around the mobile user first.</p>
+    <p>This includes large tap targets for buttons, text that's readable without pinching, fast load times on mobile data, and a layout that makes sense on a small screen. Google also ranks mobile-friendly sites higher in search results, so this directly affects how many people find you in the first place.</p>
+
+    <blockquote>"A site that works beautifully on mobile but looks average on desktop will always outperform one that looks stunning on desktop and breaks on mobile."</blockquote>
+
+    <h2>3. A Single, Obvious <em>Call-to-Action</em></h2>
+    <p>Every page of your website should have one primary goal and one primary call-to-action (CTA). One. Not five. When visitors are presented with too many choices — "Call us, email us, follow us on Instagram, subscribe to our newsletter, read our blog..." — they make no choice at all. This is called decision paralysis, and it kills conversions.</p>
+    <p>Decide what the most valuable action is for a new visitor to take. For most service businesses, it's booking a consultation or requesting a quote. Make that button big, obvious, and repeated throughout the page. Everything else is secondary.</p>
+
+    <h3>What makes a great CTA button:</h3>
+    <ul>
+      <li>Action-oriented language: "Book a Free Consultation" beats "Contact Us"</li>
+      <li>Benefit-focused: "Get My Free Quote" beats "Submit"</li>
+      <li>High contrast colour that stands out from the rest of the page</li>
+      <li>Visible without scrolling (in the hero section)</li>
+      <li>Repeated at natural stopping points throughout the page</li>
+    </ul>
+
+    <h2>4. Trust Signals That <em>Remove Doubt</em></h2>
+    <p>People buy from businesses they trust. On a website, trust is built through social proof — evidence that other real people have worked with you and had a good experience. Without this, even the most beautifully designed website will leave visitors hesitant.</p>
+    <p>Trust signals include testimonials with real names and photos, client logos, case studies, awards or certifications, your business address, and professional photography. Even a simple Google review embedded on your site can significantly increase conversions.</p>
+
+    <div class="callout"><p><strong>The trust gap is real:</strong> Studies consistently show that websites with at least three testimonials convert at rates 34% higher than those without. If you don't have testimonials yet, ask your three best clients for a short written review this week.</p></div>
+
+    <h2>5. Fast Load Speed — Under <em>3 Seconds</em></h2>
+    <p>Website speed is not a technical detail — it's a conversion factor. Research by Google shows that 53% of mobile users abandon a website if it takes more than three seconds to load. Every additional second of load time increases your bounce rate significantly.</p>
+    <p>Common culprits for slow websites include unoptimised images (the biggest offender), cheap shared hosting, too many plugins, and unminified code. The good news is most of these are fixable without a complete rebuild.</p>
+
+    <div class="tip"><p><strong>💡 Test Yours:</strong> Go to <strong>PageSpeed Insights</strong> (search it on Google) and paste in your URL. It will show you exactly what's slowing your site down and how to fix it, for free.</p></div>
+
+    <h2>The Bottom Line</h2>
+    <p>Your website doesn't need to be the fanciest or most expensive. It needs to be clear, trustworthy, fast, and focused. If your current site is missing any of these five elements, you're not just losing visitors — you're losing clients who were ready to buy.</p>
+    <p>At Pixora Studio, we build websites for small businesses that tick all five of these boxes from day one. If you'd like an honest assessment of your current site, or you're ready to build one that actually converts, we'd love to chat.</p>
+  </div>
+  <div class="art-cta">
+    <h3>Ready for a website that <em>actually converts?</em></h3>
+    <p>Book a free 30-minute discovery call. No pressure, just honest advice for your business.</p>
+    <div class="art-cta-btns">
+      <a href="pixora-studio-complete.html#contact" class="btn btn-amber">Book a Free Call</a>
+      <a href="pixora-studio-complete.html#pricing" class="btn btn-ghost">View Packages</a>
+    </div>
+  </div>
+  <div class="related-section">
+    <h3>More from the studio</h3>
+    <div class="related-grid">
+      <div class="rcard" onclick="openArticle('seo')"><div class="bimg i2" style="height:120px;font-size:36px;">🔍</div><div class="bbody"><span class="bcat">SEO</span><div class="btitle">How to Get Your Business on the First Page of Google</div></div></div>
+      <div class="rcard" onclick="openArticle('local-seo')"><div class="bimg i6" style="height:120px;font-size:36px;">📍</div><div class="bbody"><span class="bcat">Local SEO</span><div class="btitle">Google Business Profile: The Free Tool That Gets You Found</div></div></div>
+      <div class="rcard" onclick="openArticle('branding')"><div class="bimg i5" style="height:120px;font-size:36px;">🎨</div><div class="bbody"><span class="bcat">Branding</span><div class="btitle">Why Your Logo Matters More Than You Think</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE: SEO -->
+<div class="article-overlay" id="art-seo">
+  <div class="art-nav">
+    <button class="art-back" onclick="closeArticle()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Blog
+    </button>
+    <div class="art-nav-logo">PIX<span>O</span>RA <small style="font-size:11px;letter-spacing:3px;color:var(--tan);">STUDIO</small></div>
+    <a href="pixora-studio-complete.html#contact" class="btn btn-amber" style="font-size:10px;padding:10px 20px;">Book a Call</a>
+  </div>
+  <div class="art-hero">
+    <span class="art-cat">SEO · February 2025 · 7 min read</span>
+    <h1 class="art-h1">How to Get Your Business on the First Page of Google (Without Paying for Ads)</h1>
+    <div class="art-meta">
+      <span>✍️ Pixora Studio</span>
+      <span>📅 February 2025</span>
+      <span>⏱ 7 min read</span>
+    </div>
+  </div>
+  <div class="art-body">
+    <p>Every small business owner wants to appear on the first page of Google. Most assume you need a big advertising budget to get there. The reality? Organic SEO — done properly — can put your business in front of thousands of potential customers without spending a cent on ads. It takes time and the right approach, but the results compound and last far longer than any paid campaign.</p>
+    <p>This is a beginner's guide to on-page SEO for small businesses. No jargon. No technical overwhelm. Just the practical steps that actually move the needle.</p>
+
+    <h2>What Is SEO, <em>Really?</em></h2>
+    <p>SEO stands for Search Engine Optimisation. At its core, it's the practice of making your website easier for Google to understand, so Google is more likely to show it to people searching for what you offer. Think of it this way: Google is a matchmaker. It wants to connect searchers with the best possible answer to their query. Your job is to convince Google that your website is that answer.</p>
+
+    <h2>Step 1: Find the Right <em>Keywords</em></h2>
+    <p>Before you write a single word of content, you need to understand what your potential customers are actually typing into Google. These are called keywords, and targeting the wrong ones is the most common SEO mistake small businesses make.</p>
+    <p>The best keywords for a small business are "long-tail" — more specific phrases with lower competition. Instead of trying to rank for "web design" (millions of results, dominated by huge companies), target something like "affordable web design for small businesses in Cape Town." Far fewer websites compete for this, and the people searching for it are much closer to buying.</p>
+
+    <div class="tip"><p><strong>💡 Free Tool:</strong> Use Google's own <strong>Keyword Planner</strong> (free with a Google account) or simply type your service into Google and look at the "People Also Ask" and "Related Searches" sections at the bottom. These show you exactly what real people are searching for.</p></div>
+
+    <h2>Step 2: Optimise Your <em>Page Titles &amp; Meta Descriptions</em></h2>
+    <p>The page title is the clickable blue link that appears in search results. The meta description is the short paragraph below it. These two elements are often overlooked by small businesses, but they have a direct impact on both your ranking and how many people click on your result.</p>
+    <p>Every page on your website should have a unique title tag that includes your primary keyword and your location (if you're a local business). Keep titles under 60 characters. Meta descriptions should be 150–160 characters — think of them as your sales pitch to someone scanning the search results page.</p>
+
+    <blockquote>"Your page title is the first impression your website makes in Google. Make it count."</blockquote>
+
+    <h2>Step 3: Create Content That <em>Answers Questions</em></h2>
+    <p>Google's primary goal is to answer questions. If your website answers the questions your potential customers are asking, Google will reward you with better rankings. This is why blogging and creating helpful content is such a powerful long-term SEO strategy.</p>
+    <p>Start by writing one blog post per month that answers a common question your customers ask. If you're a plumber, write "How much does a burst pipe repair cost in Johannesburg?" If you're an accountant, write "What can a sole proprietor claim as a tax deduction in South Africa?" These articles attract people at exactly the moment they need your services.</p>
+
+    <h2>Step 4: Build <em>Internal Links</em></h2>
+    <p>Internal linking means connecting your pages to each other with clickable text. When a user reads your blog post about SEO tips, link to your services page. When they read about web design, link to your pricing page. This keeps visitors on your site longer and helps Google understand how your pages relate to each other, both of which improve your rankings.</p>
+
+    <h2>Step 5: Get Other Websites to <em>Link to You</em></h2>
+    <p>Backlinks — links from other websites to yours — are one of Google's strongest ranking signals. They're essentially votes of confidence. The more reputable websites that link to you, the more Google trusts you.</p>
+    <p>For small businesses, the most practical ways to earn backlinks are: getting listed on local business directories, asking suppliers or partners to link to your site, getting mentioned in local media or community blogs, and writing guest posts for industry websites. Even a handful of quality backlinks from trusted South African websites can significantly move your rankings.</p>
+
+    <div class="callout"><p><strong>The SEO Timeline:</strong> Honest truth — SEO is not instant. Most businesses start seeing meaningful results within <strong>3–6 months</strong> of consistent effort. But unlike paid ads, those results don't disappear the moment you stop paying. Every hour you invest in SEO today is still working for you two years from now.</p></div>
+
+    <h2>The Shortcut: Let Your Google Business Profile Do the Heavy Lifting</h2>
+    <p>If you're a local business, your Google Business Profile can get you appearing in the coveted "map pack" — the three local results that appear at the top of Google for location-based searches. We've written a separate article entirely on this (see "Google Business Profile: The Free Tool That Gets Local Businesses Found"), but it's the fastest way to get visible on Google without any complex technical SEO work.</p>
+
+    <h2>Summary</h2>
+    <p>SEO doesn't have to be overwhelming. Start with these five steps: research your keywords, optimise your page titles and meta descriptions, create helpful content that answers your customers' questions, build internal links, and earn a few quality backlinks. Do this consistently over six months, and you will see results.</p>
+    <p>If you'd like us to handle your SEO properly — including a full technical audit, keyword strategy, and content plan — our Premium package includes everything you need to start ranking. Book a free call and let's discuss your goals.</p>
+  </div>
+  <div class="art-cta">
+    <h3>Want us to handle your <em>SEO?</em></h3>
+    <p>Our Premium package includes a full SEO strategy, implementation and ongoing guidance. Let's get your business found.</p>
+    <div class="art-cta-btns">
+      <a href="pixora-studio-complete.html#contact" class="btn btn-amber">Book a Free Call</a>
+      <a href="pixora-studio-complete.html#pricing" class="btn btn-ghost">View Packages</a>
+    </div>
+  </div>
+  <div class="related-section">
+    <h3>More from the studio</h3>
+    <div class="related-grid">
+      <div class="rcard" onclick="openArticle('web-design')"><div class="bimg i1" style="height:120px;font-size:36px;">🌐</div><div class="bbody"><span class="bcat">Web Design</span><div class="btitle">5 Things Every Small Business Website Must Have in 2025</div></div></div>
+      <div class="rcard" onclick="openArticle('local-seo')"><div class="bimg i6" style="height:120px;font-size:36px;">📍</div><div class="bbody"><span class="bcat">Local SEO</span><div class="btitle">Google Business Profile: The Free Tool That Gets You Found</div></div></div>
+      <div class="rcard" onclick="openArticle('paid-ads')"><div class="bimg i3" style="height:120px;font-size:36px;">📣</div><div class="bbody"><span class="bcat">Paid Ads</span><div class="btitle">Facebook Ads vs Google Ads: Which One Is Right for You?</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE: Paid Ads -->
+<div class="article-overlay" id="art-paid-ads">
+  <div class="art-nav">
+    <button class="art-back" onclick="closeArticle()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Blog
+    </button>
+    <div class="art-nav-logo">PIX<span>O</span>RA <small style="font-size:11px;letter-spacing:3px;color:var(--tan);">STUDIO</small></div>
+    <a href="pixora-studio-complete.html#contact" class="btn btn-amber" style="font-size:10px;padding:10px 20px;">Book a Call</a>
+  </div>
+  <div class="art-hero">
+    <span class="art-cat">Paid Ads · January 2025 · 6 min read</span>
+    <h1 class="art-h1">Facebook Ads vs Google Ads: Which One Is Right for Your Business?</h1>
+    <div class="art-meta">
+      <span>✍️ Pixora Studio</span>
+      <span>📅 January 2025</span>
+      <span>⏱ 6 min read</span>
+    </div>
+  </div>
+  <div class="art-body">
+    <p>You've decided to invest in paid advertising. Smart move. But now you're faced with a choice that trips up a lot of small business owners: Facebook Ads or Google Ads? The wrong answer can burn through your budget with little to show for it. The right answer depends entirely on your business, your customers, and what you're trying to achieve.</p>
+    <p>Let's cut through the noise and give you a practical framework for making this decision.</p>
+
+    <h2>The Fundamental <em>Difference</em></h2>
+    <p>This is the most important concept to understand, and once you do, the choice becomes much clearer.</p>
+    <p>Google Ads targets <strong>intent</strong>. People searching on Google are actively looking for something. When someone types "plumber Cape Town emergency" or "best accountant Sandton", they have a problem and they want a solution right now. Google Ads puts your business in front of them at that exact moment of intent.</p>
+    <p>Facebook Ads targets <strong>interest</strong>. People on Facebook aren't searching for anything — they're scrolling through content. Facebook Ads interrupt that scroll with something relevant based on who the person is: their age, location, interests, behaviours, and more. You're reaching potential customers before they even know they need you.</p>
+
+    <blockquote>"Google captures demand. Facebook creates demand. Both are powerful — but they work in fundamentally different ways."</blockquote>
+
+    <h2>When to Choose <em>Google Ads</em></h2>
+    <p>Google Ads work best when people are already actively searching for your product or service. This is the case for most service-based businesses — plumbers, lawyers, accountants, tutors, mechanics, cleaners. These are businesses people look for when they have a specific problem to solve.</p>
+
+    <h3>Google Ads are ideal if:</h3>
+    <ul>
+      <li>You offer a service people search for when they need it (emergency plumbing, tax advice, car repairs)</li>
+      <li>Your customers have high intent — they're ready to buy, not just browsing</li>
+      <li>Your average transaction value is high enough to justify the cost per click</li>
+      <li>You want to show up for specific locations (local service businesses)</li>
+      <li>You want measurable, direct-response results</li>
+    </ul>
+
+    <h2>When to Choose <em>Facebook Ads</em></h2>
+    <p>Facebook (and Instagram) Ads work best for products and services that benefit from visual presentation and impulse decision-making. They're also powerful for building brand awareness and retargeting people who've already visited your website.</p>
+
+    <h3>Facebook Ads are ideal if:</h3>
+    <ul>
+      <li>You sell a product (especially something visual — fashion, food, home decor, beauty)</li>
+      <li>You want to build brand awareness in a specific community or demographic</li>
+      <li>Your audience has specific interests or demographics (e.g., female entrepreneurs aged 25–40 in Johannesburg)</li>
+      <li>You want to retarget website visitors who didn't convert</li>
+      <li>You're launching something new and need to create demand from scratch</li>
+    </ul>
+
+    <div class="tip"><p><strong>💡 The Local Business Sweet Spot:</strong> For most South African local service businesses, <strong>Google Ads</strong> deliver faster, more measurable ROI. For retail, e-commerce, and lifestyle brands, <strong>Facebook/Instagram Ads</strong> typically perform better.</p></div>
+
+    <h2>What About <em>Budget?</em></h2>
+    <p>Both platforms work on a bidding system — you set a daily or monthly budget and pay per click (Google) or per impression or result (Facebook). For most small businesses starting out, we recommend a minimum test budget of R1,500–R2,500 per month per platform. Less than this and you won't generate enough data to optimise effectively.</p>
+    <p>Google clicks tend to cost more per click but convert at a higher rate because of intent. Facebook tends to cost less per click but requires more nurturing before a conversion. The "right" budget depends on your margins, your conversion rate, and your average customer lifetime value.</p>
+
+    <h2>Can You Run <em>Both?</em></h2>
+    <p>Absolutely — and for many businesses, using both platforms together is the most powerful approach. Use Google to capture people actively searching for you, and use Facebook to retarget the people who visited your site from Google but didn't convert. This combination dramatically increases your overall conversion rate.</p>
+
+    <div class="callout"><p><strong>The Setup Matters More Than the Budget:</strong> A well-structured R1,500/month campaign will consistently outperform a poorly set up R5,000/month campaign. Targeting, ad copy, landing pages and tracking are everything. This is why professional setup — even just once — pays for itself very quickly.</p></div>
+
+    <h2>The Bottom Line</h2>
+    <p>Choose Google Ads if your customers are actively searching for what you offer. Choose Facebook Ads if you want to reach a specific audience before they're searching. Use both if your budget allows and you want maximum coverage.</p>
+    <p>Pixora Studio sets up and launches paid ad campaigns for small businesses as an add-on to our packages, or as a standalone service. If you'd like us to recommend the right platform for your specific business and set up a campaign that doesn't waste budget, book a free 30-minute call.</p>
+  </div>
+  <div class="art-cta">
+    <h3>Ready to run ads that <em>actually work?</em></h3>
+    <p>We set up and launch targeted ad campaigns for small businesses. No wasted budget. No guesswork.</p>
+    <div class="art-cta-btns">
+      <a href="pixora-studio-complete.html#contact" class="btn btn-amber">Book a Free Call</a>
+      <a href="pixora-studio-complete.html#pricing" class="btn btn-ghost">View Packages</a>
+    </div>
+  </div>
+  <div class="related-section">
+    <h3>More from the studio</h3>
+    <div class="related-grid">
+      <div class="rcard" onclick="openArticle('seo')"><div class="bimg i2" style="height:120px;font-size:36px;">🔍</div><div class="bbody"><span class="bcat">SEO</span><div class="btitle">How to Get on the First Page of Google Without Paying for Ads</div></div></div>
+      <div class="rcard" onclick="openArticle('email-marketing')"><div class="bimg i4" style="height:120px;font-size:36px;">📧</div><div class="bbody"><span class="bcat">Email Marketing</span><div class="btitle">Why Your Email List Is More Valuable Than Social Media</div></div></div>
+      <div class="rcard" onclick="openArticle('web-design')"><div class="bimg i1" style="height:120px;font-size:36px;">🌐</div><div class="bbody"><span class="bcat">Web Design</span><div class="btitle">5 Things Every Small Business Website Must Have in 2025</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE: Email Marketing -->
+<div class="article-overlay" id="art-email-marketing">
+  <div class="art-nav">
+    <button class="art-back" onclick="closeArticle()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Blog
+    </button>
+    <div class="art-nav-logo">PIX<span>O</span>RA <small style="font-size:11px;letter-spacing:3px;color:var(--tan);">STUDIO</small></div>
+    <a href="pixora-studio-complete.html#contact" class="btn btn-amber" style="font-size:10px;padding:10px 20px;">Book a Call</a>
+  </div>
+  <div class="art-hero">
+    <span class="art-cat">Email Marketing · January 2025 · 5 min read</span>
+    <h1 class="art-h1">Why Your Email List Is More Valuable Than Your Social Media Following</h1>
+    <div class="art-meta">
+      <span>✍️ Pixora Studio</span>
+      <span>📅 January 2025</span>
+      <span>⏱ 5 min read</span>
+    </div>
+  </div>
+  <div class="art-body">
+    <p>Here's a scenario that plays out every year: a business owner spends years building a following of 10,000 people on Instagram. Then the algorithm changes. Reach drops to 2%. That's 200 people seeing each post instead of 10,000 — and there's nothing they can do about it. The platform owns that audience. Not the business owner.</p>
+    <p>This is the fundamental problem with social media as your primary marketing channel. And it's why email marketing — often dismissed as "old" or "boring" — continues to deliver the highest return on investment of any digital marketing channel, year after year.</p>
+
+    <h2>You Own Your Email List. <em>No One Can Take It From You.</em></h2>
+    <p>When someone gives you their email address, you have a direct line to them that doesn't depend on any algorithm, platform policy, or ad budget. If Facebook shuts down tomorrow (unlikely, but not impossible), your email list is untouched. If Instagram changes its algorithm again, your email list is untouched. That's an asset you own — not one you're renting from a tech giant.</p>
+
+    <blockquote>"Social media is rented land. Your email list is property you own. Build on your own land."</blockquote>
+
+    <h2>The Numbers Don't Lie</h2>
+    <p>Email marketing consistently delivers an average ROI of R380–R420 for every R10 spent, making it the highest-ROI channel in digital marketing. The average email open rate across industries is 20–30%, compared to the 2–5% organic reach most businesses get on Facebook and Instagram. And email subscribers convert to customers at roughly 6x the rate of social media followers.</p>
+    <p>Why? Because someone who gives you their email address is raising their hand and saying "I want to hear from you." That's a very different relationship to someone who liked a post once while scrolling through their feed.</p>
+
+    <h2>How to Start Building Your List <em>Right Now</em></h2>
+    <p>You don't need a large following to start building an email list. You just need to give people a reason to sign up. This is called a "lead magnet" — something valuable you offer in exchange for an email address.</p>
+
+    <h3>Effective lead magnets for small businesses:</h3>
+    <ul>
+      <li>A free checklist or guide (like our Digital Presence Audit Checklist)</li>
+      <li>A discount or promotional offer for first-time customers</li>
+      <li>A free consultation or audit</li>
+      <li>Access to a video tutorial or mini-course</li>
+      <li>A free quote or price guide for your service</li>
+    </ul>
+
+    <div class="tip"><p><strong>💡 Start Simple:</strong> Add a simple email sign-up form to your website with a clear headline ("Get our free 10-point checklist") and a compelling button. Even 5–10 new subscribers per month compounds significantly over a year.</p></div>
+
+    <h2>What to Send — And How Often</h2>
+    <p>The most common reason small businesses don't start email marketing is "I don't know what to send." Here's a simple framework that works for any business:</p>
+    <p><strong>Welcome email (sent immediately):</strong> Deliver what you promised (the lead magnet), introduce yourself, and set expectations. <strong>Value email (Week 2):</strong> Share a helpful tip, insight, or piece of content relevant to your industry. <strong>Social proof email (Week 3):</strong> Share a client testimonial or case study. <strong>Offer email (Week 4):</strong> Present your main service or product with a clear call-to-action.</p>
+    <p>This four-email welcome sequence alone is enough to turn cold subscribers into warm leads. Once they're through the sequence, a monthly newsletter keeps you top of mind without overwhelming anyone.</p>
+
+    <div class="callout"><p><strong>The One Rule of Email Marketing:</strong> Always give more than you ask. For every promotional email, send at least two or three that are purely valuable to the reader. People who feel like you're constantly trying to sell them something unsubscribe. People who feel like you're genuinely trying to help them become loyal customers.</p></div>
+
+    <h2>Tools to Get Started</h2>
+    <p>For small businesses just starting out, Mailchimp has a generous free tier that allows up to 500 contacts and 1,000 emails per month at no cost. MailerLite is another excellent option with a clean interface. Both integrate easily with most website platforms and take less than an hour to set up.</p>
+
+    <h2>The Bottom Line</h2>
+    <p>If you have an audience of any size on social media, your next step should be converting them into email subscribers. Start with a simple lead magnet, add a sign-up form to your website, and set up a four-email welcome sequence. That's it. In twelve months, you'll have an audience you actually own — and one that's significantly more likely to buy from you.</p>
+    <p>Pixora Studio's Premium package includes full email marketing setup: platform configuration, a branded email template, and a three-email welcome sequence written for your business. Book a call to find out if it's right for you.</p>
+  </div>
+  <div class="art-cta">
+    <h3>Let us set up your <em>email marketing</em></h3>
+    <p>We configure your platform, design your templates, and write your welcome sequence. Done for you.</p>
+    <div class="art-cta-btns">
+      <a href="pixora-studio-complete.html#contact" class="btn btn-amber">Book a Free Call</a>
+      <a href="pixora-studio-complete.html#pricing" class="btn btn-ghost">View Packages</a>
+    </div>
+  </div>
+  <div class="related-section">
+    <h3>More from the studio</h3>
+    <div class="related-grid">
+      <div class="rcard" onclick="openArticle('paid-ads')"><div class="bimg i3" style="height:120px;font-size:36px;">📣</div><div class="bbody"><span class="bcat">Paid Ads</span><div class="btitle">Facebook Ads vs Google Ads: Which One Is Right for You?</div></div></div>
+      <div class="rcard" onclick="openArticle('web-design')"><div class="bimg i1" style="height:120px;font-size:36px;">🌐</div><div class="bbody"><span class="bcat">Web Design</span><div class="btitle">5 Things Every Small Business Website Must Have in 2025</div></div></div>
+      <div class="rcard" onclick="openArticle('seo')"><div class="bimg i2" style="height:120px;font-size:36px;">🔍</div><div class="bbody"><span class="bcat">SEO</span><div class="btitle">How to Get on the First Page of Google Without Paying for Ads</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE: Branding -->
+<div class="article-overlay" id="art-branding">
+  <div class="art-nav">
+    <button class="art-back" onclick="closeArticle()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Blog
+    </button>
+    <div class="art-nav-logo">PIX<span>O</span>RA <small style="font-size:11px;letter-spacing:3px;color:var(--tan);">STUDIO</small></div>
+    <a href="pixora-studio-complete.html#contact" class="btn btn-amber" style="font-size:10px;padding:10px 20px;">Book a Call</a>
+  </div>
+  <div class="art-hero">
+    <span class="art-cat">Branding · December 2024 · 4 min read</span>
+    <h1 class="art-h1">Why Your Logo Matters More Than You Think</h1>
+    <div class="art-meta">
+      <span>✍️ Pixora Studio</span>
+      <span>📅 December 2024</span>
+      <span>⏱ 4 min read</span>
+    </div>
+  </div>
+  <div class="art-body">
+    <p>Many small business owners treat their logo as an afterthought — a quick design knocked up in Canva or bought cheap online, just to have "something." But your logo is the foundation of your brand. And a weak foundation costs you more than you realise.</p>
+    <p>This isn't about vanity. It's about the psychology of trust, and the real, measurable impact your visual identity has on whether potential clients choose you or your competitor.</p>
+
+    <h2>First Impressions Happen in <em>Milliseconds</em></h2>
+    <p>Research shows it takes 50 milliseconds — that's 0.05 seconds — for a person to form an opinion about your brand based on visual cues alone. Before they've read a single word about what you do or how much you charge, they've already made a subconscious judgement based on how professional you look.</p>
+    <p>A polished, intentional logo communicates stability, credibility, and pride in your work. A generic or poorly designed logo communicates the opposite — even if your actual service is exceptional.</p>
+
+    <blockquote>"Your logo doesn't make the sale. But a bad one can kill it before you even get a chance."</blockquote>
+
+    <h2>What a Logo Actually <em>Communicates</em></h2>
+    <p>A well-designed logo communicates far more than just your business name. It communicates your brand's personality, your target audience, and your positioning in the market. A law firm, a children's toy brand, and a luxury hotel all communicate completely different things through their logos — and for good reason. Their customers expect different things.</p>
+
+    <h3>The four elements of a great logo:</h3>
+    <ul>
+      <li><strong>Simplicity:</strong> A great logo is recognisable at a glance, works in black and white, and looks good at any size — from a business card to a billboard.</li>
+      <li><strong>Relevance:</strong> It should feel appropriate for your industry and your target customer, not just what you personally find visually interesting.</li>
+      <li><strong>Distinctiveness:</strong> It should be different enough from your competitors that it's not confused with them.</li>
+      <li><strong>Timelessness:</strong> Trendy logos date quickly. A great logo should look as relevant in 10 years as it does today.</li>
+    </ul>
+
+    <h2>Logo vs. <em>Brand Identity</em> — What's the Difference?</h2>
+    <p>This is where many small businesses stop short. A logo is a single element. A brand identity is the complete visual system: your logo, your colour palette, your typography choices, your imagery style, and how all of these are applied consistently across every touchpoint — your website, social media, business cards, email signatures, and packaging.</p>
+    <p>Consistency is everything. When a potential customer sees your Instagram post, then visits your website, then receives a quote from you — if all of these look and feel like they come from the same brand, trust builds rapidly. If they look like three different businesses, trust erodes.</p>
+
+    <div class="tip"><p><strong>💡 The Consistency Test:</strong> Take a screenshot of your Instagram profile, your website homepage, and your most recent email or quote. Put them side by side. Do they feel like they belong together? Same fonts, same colours, same overall feel? If not, that inconsistency is costing you clients.</p></div>
+
+    <h2>How to Brief a <em>Designer Properly</em></h2>
+    <p>If you're investing in professional logo design, the quality of your brief directly determines the quality of the result. The more information you give a designer about your business, your target audience, and the feeling you want to evoke, the better the outcome.</p>
+    <p>A good brief includes: your business name and what you do, your target customer (be specific — not "everyone"), three to five adjectives that describe your brand personality (e.g., "trustworthy, modern, approachable"), logos you admire and why, and logos you dislike and why. This last point is often the most useful.</p>
+
+    <div class="callout"><p><strong>What's Included in the Pixora Studio Starter Package:</strong> Our Starter package (R800) includes two logo concepts, your brand colour palette, font selection, and a basic style guide — everything you need to start showing up consistently. We then apply this across your social profiles and digital portfolio.</p></div>
+
+    <h2>The Bottom Line</h2>
+    <p>Your logo is not just a picture. It's the visual embodiment of your business and a signal to every potential client about whether you're worth taking seriously. Investing in a professional logo and brand identity is not a luxury — for a service-based business, it's one of the highest-ROI investments you can make.</p>
+    <p>Ready to build a brand identity that makes the right first impression? Our Starter package is designed specifically for small businesses and personal brands who want to show up professionally from day one.</p>
+  </div>
+  <div class="art-cta">
+    <h3>Build a brand identity that <em>commands trust</em></h3>
+    <p>Professional logo design and brand identity, starting at R800. Book a call and let's build your brand.</p>
+    <div class="art-cta-btns">
+      <a href="pixora-studio-complete.html#contact" class="btn btn-amber">Book a Free Call</a>
+      <a href="pixora-studio-complete.html#pricing" class="btn btn-ghost">View Starter Package</a>
+    </div>
+  </div>
+  <div class="related-section">
+    <h3>More from the studio</h3>
+    <div class="related-grid">
+      <div class="rcard" onclick="openArticle('web-design')"><div class="bimg i1" style="height:120px;font-size:36px;">🌐</div><div class="bbody"><span class="bcat">Web Design</span><div class="btitle">5 Things Every Small Business Website Must Have in 2025</div></div></div>
+      <div class="rcard" onclick="openArticle('local-seo')"><div class="bimg i6" style="height:120px;font-size:36px;">📍</div><div class="bbody"><span class="bcat">Local SEO</span><div class="btitle">Google Business Profile: The Free Tool That Gets You Found</div></div></div>
+      <div class="rcard" onclick="openArticle('email-marketing')"><div class="bimg i4" style="height:120px;font-size:36px;">📧</div><div class="bbody"><span class="bcat">Email Marketing</span><div class="btitle">Why Your Email List Is More Valuable Than Social Media</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE: Local SEO -->
+<div class="article-overlay" id="art-local-seo">
+  <div class="art-nav">
+    <button class="art-back" onclick="closeArticle()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to Blog
+    </button>
+    <div class="art-nav-logo">PIX<span>O</span>RA <small style="font-size:11px;letter-spacing:3px;color:var(--tan);">STUDIO</small></div>
+    <a href="pixora-studio-complete.html#contact" class="btn btn-amber" style="font-size:10px;padding:10px 20px;">Book a Call</a>
+  </div>
+  <div class="art-hero">
+    <span class="art-cat">Local SEO · November 2024 · 5 min read</span>
+    <h1 class="art-h1">Google Business Profile: The Free Tool That Gets Local Businesses Found</h1>
+    <div class="art-meta">
+      <span>✍️ Pixora Studio</span>
+      <span>📅 November 2024</span>
+      <span>⏱ 5 min read</span>
+    </div>
+  </div>
+  <div class="art-body">
+    <p>If you run a local business — a restaurant, a salon, a plumbing company, a tutoring service — and you don't have a fully optimised Google Business Profile, you are invisible to the people closest to you. And these are people actively searching for exactly what you offer, often with their phone in hand, ready to call.</p>
+    <p>Google Business Profile (formerly Google My Business) is completely free. It's the single most impactful thing most local businesses can do for their online visibility, and it takes less than a day to set up properly. Here's everything you need to know.</p>
+
+    <h2>What Is Google Business Profile and <em>Why Does It Matter?</em></h2>
+    <p>When someone searches for "plumber near me" or "hair salon Pretoria" on Google, three local businesses appear at the very top of the results — above all the regular website links. This is called the "Local Pack" or "Map Pack," and it's driven entirely by Google Business Profiles.</p>
+    <p>Appearing in the Local Pack for searches related to your business is the fastest way to get phone calls and walk-in customers from people in your area. Studies show that the top three results in the Local Pack capture over 70% of clicks for local searches. If you're not in it, you're losing that business to whoever is.</p>
+
+    <blockquote>"The Local Pack is the most valuable piece of digital real estate for local businesses — and it's completely free to claim."</blockquote>
+
+    <h2>Setting Up Your Profile: <em>Step by Step</em></h2>
+    <p>Go to business.google.com and sign in with a Google account. Search for your business name to make sure it hasn't already been claimed by someone else. If it has, you can request ownership. If not, click "Add your business" and follow the prompts.</p>
+    <p>Google will typically ask you to verify your business by sending a postcard to your physical address with a verification code. This usually takes 5–7 business days. Once verified, your profile is live and can start appearing in local search results.</p>
+
+    <h2>The 8 Things That Make a Profile <em>Rank Higher</em></h2>
+    <p>Not all Google Business Profiles are created equal. Google uses several signals to decide which businesses to show in the Local Pack and in what order. Here's what matters most:</p>
+
+    <ul>
+      <li><strong>Complete information:</strong> Fill in every single field — business name, address, phone, website, hours, description, categories. Incomplete profiles rank lower.</li>
+      <li><strong>The right primary category:</strong> Your primary category tells Google what your business fundamentally is. Choose the most specific and accurate option available.</li>
+      <li><strong>Photos:</strong> Businesses with photos receive 42% more requests for directions and 35% more website clicks. Add at least 10 high-quality photos of your premises, products, team and work.</li>
+      <li><strong>Google Reviews:</strong> The number and quality of your reviews is one of the strongest Local Pack ranking factors. More reviews = higher ranking.</li>
+      <li><strong>Regular posts:</strong> Google Business Profile allows you to post updates, offers and events. Regular posting signals to Google that your business is active.</li>
+      <li><strong>Responding to reviews:</strong> Responding to all reviews (both positive and negative) shows engagement and is a positive ranking signal.</li>
+      <li><strong>Correct NAP consistency:</strong> Your Name, Address, and Phone number must be identical across your website, Google profile, and all other online directories.</li>
+      <li><strong>Questions &amp; Answers:</strong> Add frequently asked questions proactively. This saves potential customers time and increases trust.</li>
+    </ul>
+
+    <h2>How to Get More <em>Google Reviews</em> (The Right Way)</h2>
+    <p>Reviews are the single most impactful improvement most local businesses can make to their Google Business Profile. Here's a simple system: after completing a job or delivering a service, send your client a WhatsApp or email with a direct link to your Google review page and a short, personal message asking for honest feedback.</p>
+    <p>Never offer incentives for reviews — this violates Google's policies and can get your profile suspended. Never post fake reviews. Just ask consistently, make it easy, and the reviews will come. Ten genuine five-star reviews will move your profile dramatically in the local rankings.</p>
+
+    <div class="tip"><p><strong>💡 Get Your Review Link:</strong> In your Google Business Profile dashboard, click "Get more reviews" to find your unique review link. Save it and add it to every post-service message you send to clients.</p></div>
+
+    <h2>Common Mistakes That <em>Hurt Your Ranking</em></h2>
+    <p>Avoid keyword stuffing in your business name (e.g., "John's Plumbing | Best Plumber Cape Town | Emergency Plumber"). This violates Google's guidelines and can result in suspension. Don't use a P.O. box as your address if you're service-area business — use your real address or select "I deliver goods and services to my customers" and specify your service area. And don't create duplicate profiles — if you find one, contact Google to have it removed.</p>
+
+    <div class="callout"><p><strong>What Pixora Studio Does For You:</strong> Our Growth package includes full Google Business Profile setup and optimisation — we complete every field, upload professional photos, write your business description with relevant keywords, and set you up to start collecting reviews. Most clients see an improvement in local visibility within 4–8 weeks.</p></div>
+
+    <h2>The Bottom Line</h2>
+    <p>Google Business Profile is the most cost-effective marketing tool available to local businesses. It's free, it's powerful, and most of your competitors aren't using it to its full potential. Claim your profile today, fill in every field, add photos, and start asking for reviews. It's the single action most likely to bring you more local customers in the shortest time.</p>
+    <p>If you'd like us to handle the full setup and optimisation for you, it's included in our Growth package. Book a free call to find out more.</p>
+  </div>
+  <div class="art-cta">
+    <h3>Get your Google profile <em>fully optimised</em></h3>
+    <p>Included in our Growth package. Let us set up and optimise your profile so local customers can find you.</p>
+    <div class="art-cta-btns">
+      <a href="pixora-studio-complete.html#contact" class="btn btn-amber">Book a Free Call</a>
+      <a href="pixora-studio-complete.html#pricing" class="btn btn-ghost">View Growth Package</a>
+    </div>
+  </div>
+  <div class="related-section">
+    <h3>More from the studio</h3>
+    <div class="related-grid">
+      <div class="rcard" onclick="openArticle('seo')"><div class="bimg i2" style="height:120px;font-size:36px;">🔍</div><div class="bbody"><span class="bcat">SEO</span><div class="btitle">How to Get on the First Page of Google Without Paying for Ads</div></div></div>
+      <div class="rcard" onclick="openArticle('web-design')"><div class="bimg i1" style="height:120px;font-size:36px;">🌐</div><div class="bbody"><span class="bcat">Web Design</span><div class="btitle">5 Things Every Small Business Website Must Have in 2025</div></div></div>
+      <div class="rcard" onclick="openArticle('branding')"><div class="bimg i5" style="height:120px;font-size:36px;">🎨</div><div class="bbody"><span class="bcat">Branding</span><div class="btitle">Why Your Logo Matters More Than You Think</div></div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Mobile nav ──
+function closeMob(){document.getElementById('mobNav').classList.remove('show');}
+document.getElementById('ham').addEventListener('click', () => document.getElementById('mobNav').classList.add('show'));
+document.getElementById('mobClose').addEventListener('click', closeMob);
+
+// ── Article open / close ──
+// ── Article open / close (no history API — safe in all iframe environments) ──
+let currentArticle = null;
+
+function openArticle(slug) {
+  const overlay = document.getElementById('art-' + slug);
+  if(!overlay) return;
+  // Close any currently open article first
+  if(currentArticle) {
+    document.getElementById('art-' + currentArticle).classList.remove('open');
+  }
+  overlay.classList.add('open');
+  overlay.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+  currentArticle = slug;
+}
+
+function closeArticle() {
+  document.querySelectorAll('.article-overlay').forEach(o => o.classList.remove('open'));
+  document.body.style.overflow = '';
+  currentArticle = null;
+}
+
+// ── Filter posts ──
+function filterPosts(cat, btn) {
+  document.querySelectorAll('.ftab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#blogGrid .bcard').forEach(card => {
+    if(cat === 'all' || card.dataset.cat === cat) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  // Reset featured layout when filtering
+  document.querySelectorAll('#blogGrid .bcard.featured').forEach(card => {
+    if(cat !== 'all' && card.style.display !== 'none'){
+      card.style.gridColumn = '1/-1';
+    }
+  });
+}
+
+// ── Scroll reveal ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
